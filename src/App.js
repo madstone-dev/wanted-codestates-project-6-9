@@ -1,8 +1,8 @@
-import React from "react";
-import CommentListTest from "./components/CommentListTest";
+import React from "react"
+import CommentListTest from "./components/CommentListTest"
 
 function App() {
-  return <CommentListTest></CommentListTest>;
+  return <CommentListTest></CommentListTest>
 }
 
-export default App;
+export default App
