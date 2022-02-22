@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 const ProductsCard = () => {
   const [showReportBtn, setShowReportBtn] = useState(false)
+  const [thumbClicked, setThumbClicked] = useState(false)
 
   return (
     <CardContainer>
@@ -13,6 +14,7 @@ const ProductsCard = () => {
           <ReportDiv>
             <ReportButton onClick={() => setShowReportBtn((prev) => !prev)} src="https://i.balaan.io/mobile/img/icon/icon-more.png" />
             <ReportPopup show={showReportBtn}>
+              <ReportImg src="https://i.balaan.io/mobile/img/icon/icon-siren.png" alt="reporting" />
               <span>신고하기</span>
             </ReportPopup>
           </ReportDiv>
@@ -24,13 +26,27 @@ const ProductsCard = () => {
       <CardDescContainer>
         <InfoSection>
           <LikeAndShare>
-            <span>👍</span>
-            <span>37</span>
-            <span>공유</span>
+            <LikeImg
+              onClick={() => setThumbClicked((prev) => !prev)}
+              src={
+                thumbClicked
+                  ? "https://static.balaan.co.kr/mobile/img/icon/like_hand.png"
+                  : "https://static.balaan.co.kr/mobile/img/review/like-hand-fill.png?v4"
+              }
+            />
+            <LikeCount>37</LikeCount>
+            <ShareImg src="https://static.balaan.co.kr/mobile/img/view/share.png?v=2" />
           </LikeAndShare>
-          <span>🤍</span>
+          <HeartImg src="https://static.balaan.co.kr/mobile/img/icon/ic-new-heart-normal.png" />
         </InfoSection>
-        <StarsSection>💥💥💥💥💥</StarsSection>
+        <StarsSection>
+          {Array.from([1, 2, 3, 4, 5], (el) => (
+            <StarImg key={el}>
+              <source type="image/webp" srcSet="https://i.balaan.io/mobile/img/icons/icon-star-black.webp" />
+              <img src="https://i.balaan.io/mobile/img/icons/icon-star-black.png" alt="star" />
+            </StarImg>
+          ))}
+        </StarsSection>
         <Options>구매 옵션명: 35</Options>
         <Review>아이 예뻐요 사진이랑 똑같습니다!</Review>
         <TagContainer>
@@ -44,7 +60,15 @@ const ProductsCard = () => {
             발볼은 어떤가요? <span>적당해요</span>
           </Tag>
         </TagContainer>
-        <DeliveryBox>배송 도착까지 2일 소요</DeliveryBox>
+        <DeliveryBox>
+          <BoxImg>
+            <source type="image/webp" srcSet="https://i.balaan.io/mobile/img/icons/icon-box-20.webp" />
+            <img src="https://i.balaan.io/mobile/img/icons/icon-box-20.png" alt="box" />
+          </BoxImg>
+          <span>
+            배송 도착까지 <strong>2일 소요</strong>
+          </span>
+        </DeliveryBox>
       </CardDescContainer>
     </CardContainer>
   )
@@ -91,10 +115,11 @@ const ReportButton = styled.img`
 
 const ReportPopup = styled.div`
   position: absolute;
-  top: 3.4rem;
-  right: 0;
+  top: 4.5rem;
+  right: 3rem;
 
-  display: ${({ show }) => (show ? "block" : "none")};
+  display: ${({ show }) => (show ? "flex" : "none")};
+  align-items: center;
   padding: 0.7rem 1.2rem;
   border-radius: 0.4rem;
   box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.2);
@@ -103,6 +128,11 @@ const ReportPopup = styled.div`
   background: white;
 
   white-space: nowrap;
+`
+
+const ReportImg = styled.img`
+  width: 2.7rem;
+  margin-right: 10px;
 `
 
 const CardImageContainer = styled.div`
@@ -135,11 +165,47 @@ const LikeAndShare = styled.div`
   gap: 10px;
 `
 
+const LikeImg = styled.img`
+  width: 1.5rem;
+
+  cursor: pointer;
+`
+
+const LikeCount = styled.span`
+  color: #222;
+
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  cursor: pointer;
+`
+
+const ShareImg = styled.img`
+  width: 1.5rem;
+
+  cursor: pointer;
+`
+
+const HeartImg = styled.img`
+  width: 1.5rem;
+
+  cursor: pointer;
+`
+
 const StarsSection = styled.div`
+  width: fit-content;
   padding: 0 1.6rem;
   margin-bottom: 5px;
 
   cursor: pointer;
+`
+
+const StarImg = styled.picture`
+  color: black;
+
+  img {
+    width: 1.3rem;
+  }
 `
 
 const Options = styled.p`
@@ -190,6 +256,14 @@ const DeliveryBox = styled.div`
   border-radius: 0.4rem;
 
   background: #f6f6f6;
+`
+
+const BoxImg = styled.picture`
+  margin-right: 5px;
+
+  img {
+    width: 2rem;
+  }
 `
 
 export default ProductsCard
