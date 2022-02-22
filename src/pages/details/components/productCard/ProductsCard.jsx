@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
+import Share from "../share"
 
 const ProductsCard = () => {
   const [showReportBtn, setShowReportBtn] = useState(false)
@@ -70,11 +71,13 @@ const ProductsCard = () => {
           </span>
         </DeliveryBox>
       </CardDescContainer>
+      <Share show={true} />
     </CardContainer>
   )
 }
 
 const CardContainer = styled.div`
+  position: relative;
   width: 500px;
 `
 
@@ -88,6 +91,8 @@ const CardHeader = styled.div`
 const User = styled.span`
   font-size: 1.3rem;
   font-weight: bold;
+
+  cursor: pointer;
 `
 
 const CardHeaderRight = styled.div`
