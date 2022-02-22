@@ -1,10 +1,26 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import Share from "../share"
 
 const ProductsCard = () => {
   const [showReportBtn, setShowReportBtn] = useState(false)
   const [thumbClicked, setThumbClicked] = useState(false)
+  const [showShare, setShowShare] = useState(false)
+
+  const handleShowShare = (show) => setShowShare(show)
+
+  // kakao script 넣기
+  useEffect(() => {
+    const script = document.createElement("script")
+    script.src = "https://developers.kakao.com/sdk/js/kakao.js"
+    script.async = true
+
+    document.body.appendChild(script)
+
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
 
   return (
     <CardContainer>
@@ -36,7 +52,7 @@ const ProductsCard = () => {
               }
             />
             <LikeCount>37</LikeCount>
-            <ShareImg src="https://static.balaan.co.kr/mobile/img/view/share.png?v=2" />
+            <ShareImg onClick={() => handleShowShare(true)} src="https://static.balaan.co.kr/mobile/img/view/share.png?v=2" />
           </LikeAndShare>
           <HeartImg src="https://static.balaan.co.kr/mobile/img/icon/ic-new-heart-normal.png" />
         </InfoSection>
@@ -71,7 +87,7 @@ const ProductsCard = () => {
           </span>
         </DeliveryBox>
       </CardDescContainer>
-      <Share show={true} />
+      <Share showShare={showShare} handleShowShare={handleShowShare} />
     </CardContainer>
   )
 }
