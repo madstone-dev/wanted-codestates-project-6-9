@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const GridList = () => {
   const toDetail = (id) => {
@@ -10,44 +10,44 @@ const GridList = () => {
     <Container>
       <Review onClick={toDetail(1)}>
         <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
+          src="https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg"
+          alt=""
         />
       </Review>
       <Review onClick={toDetail(1)}>
         <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
+          src="https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg"
+          alt=""
         />
-      </Review>{' '}
+      </Review>{" "}
       <Review onClick={toDetail(1)}>
         <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
+          src="https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg"
+          alt=""
         />
-      </Review>{' '}
+      </Review>{" "}
       <Review onClick={toDetail(1)}>
         <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
+          src="https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg"
+          alt=""
         />
-      </Review>{' '}
+      </Review>{" "}
       <Review onClick={toDetail(1)}>
         <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
+          src="https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg"
+          alt=""
         />
-      </Review>{' '}
+      </Review>{" "}
       <Review onClick={toDetail(1)}>
         <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
+          src="https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg"
+          alt=""
         />
-      </Review>{' '}
+      </Review>{" "}
       <Review onClick={toDetail(1)}>
         <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
+          src="https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg"
+          alt=""
         />
       </Review>
     </Container>
