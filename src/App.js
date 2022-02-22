@@ -1,7 +1,12 @@
-import React from "react";
+import React from "react"
+import Detail from "./pages/details"
 
 function App() {
-  return <div>App</div>;
+  return (
+    <div>
+      <Detail />
+    </div>
+  )
 }
 
-export default App;
+export default App
