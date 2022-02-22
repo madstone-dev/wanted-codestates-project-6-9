@@ -252,7 +252,13 @@ const Review = styled.div`
 const TagContainer = styled.div`
   display: flex;
   gap: 0.5rem;
+  padding: 0 1.6rem;
   margin-bottom: 2rem;
+
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 const Tag = styled.div`

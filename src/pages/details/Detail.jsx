@@ -6,18 +6,31 @@ import styled from "styled-components"
 const Detail = () => {
   return (
     <DetailContainer>
-      <Header />
-      <ProductsContainer>
-        <ProductsCard />
-        <ProductsCard />
-        <ProductsCard />
-      </ProductsContainer>
+      <DetailWrapper>
+        <Header />
+        <ProductsContainer>
+          <ProductsCard />
+          <ProductsCard />
+          <ProductsCard />
+        </ProductsContainer>
+      </DetailWrapper>
     </DetailContainer>
   )
 }
 
 const DetailContainer = styled.div`
+  display: flex;
+  width: 100%;
+
+  background-color: #f9f9f9;
+  overflow: hidden;
+`
+
+const DetailWrapper = styled.div`
   width: 500px;
+  margin: auto;
+
+  background-color: #fff;
 `
 
 const ProductsContainer = styled.div`
