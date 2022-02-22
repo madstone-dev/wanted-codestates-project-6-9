@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import React from "react"
+import styled from "styled-components"
+import { useNavigate } from "react-router-dom"
 
-const Header = props => {
-  const navigate = useNavigate();
+const Header = (props) => {
+  const navigate = useNavigate()
 
   const escape = () => {
-    navigate("/");
-  };
+    navigate("/")
+  }
 
   return (
     <HeaderComponent>
@@ -15,19 +15,19 @@ const Header = props => {
       <h3>리뷰 상세보기</h3>
       <CloseBtn onClick={escape} />
     </HeaderComponent>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
 
 const HeaderComponent = styled.nav`
   width: 100%;
-  positon: fixed;
+  position: fixed;
   z-index: 999;
   box-shadow: 0 0px 3px 0px #ccc;
   background: #fff;
   display: flex;
-  flex-dirextion: row;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 1.4rem 0;
@@ -43,25 +43,23 @@ const HeaderComponent = styled.nav`
     font-weight: 700;
     white-space: nowrap;
   }
-`;
+`
 
 const EscapeBtn = styled.img`
   width: 1.5rem;
   margin: 0.3rem 1.6rem 0;
-`;
+`
 
 EscapeBtn.defaultProps = {
-  src:
-    "https://djp5oonlusoz4.cloudfront.net/contents/event/20190924/ic_left_btn.png",
-  alt: "escapebutton"
-};
+  src: "https://djp5oonlusoz4.cloudfront.net/contents/event/20190924/ic_left_btn.png",
+  alt: "escapebutton",
+}
 
 const CloseBtn = styled.img`
   width: 1.5rem;
   margin: 0.3rem 1.6rem 0;
-`;
+`
 CloseBtn.defaultProps = {
-  src:
-    "https://djp5oonlusoz4.cloudfront.net/contents/event/20190924/ic_can_btn.png",
-  alt: "closebutton"
-};
+  src: "https://djp5oonlusoz4.cloudfront.net/contents/event/20190924/ic_can_btn.png",
+  alt: "closebutton",
+}
