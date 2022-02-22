@@ -19,7 +19,7 @@ const initialState = {
 const findOne = (items, payload) =>
   items.find((review) => review.id === payload);
 
-const sortBy = ({ items, sortBy = "id", align = "asc" }) => {
+const sortBy = ({ items, sortBy, align }) => {
   console.log(sortBy, align);
   const _items = [...items];
   if (align === "asc") {
@@ -44,23 +44,25 @@ export const reviewSlice = createSlice({
   reducers: {
     addReview: (state, action) => {
       // 현재 상태 받아오기
-      const { reviews, sort, align } = current(state);
+      const { reviews, sortBy: sort, align } = current(state);
 
       // 아이디 순으로 정렬
-      const sortedById = sortBy({
+      const sortedByIdAsc = sortBy({
         items: reviews,
+        sortBy: "id",
+        align: "asc",
       });
 
       // 마지막 아이디 추가
-      const id = sortedById[sortedById.length - 1]
-        ? sortedById[sortedById.length - 1].id + 1
+      const id = sortedByIdAsc[sortedByIdAsc.length - 1]
+        ? sortedByIdAsc[sortedByIdAsc.length - 1].id + 1
         : 1;
 
       // 새로운 리뷰 생성
       const newReview = new Review({ ...action.payload, id });
 
       // 새로운 리뷰 리스트에 넣기
-      const newReviews = [...sortedById, newReview];
+      const newReviews = [...sortedByIdAsc, newReview];
 
       // 상태의 정렬 기준으로 정렬
       const sortByState = sortBy({
@@ -110,18 +112,18 @@ export const reviewSlice = createSlice({
       state.reviews = reviews.filter((review) => review.id !== action.payload);
     },
     updateSort: (state, action) => {
-      const { reviews } = current(state);
+      const { reviews, sortBy: sort, align } = current(state);
 
       // action의 정렬 기준으로 정렬
       const sortByAction = sortBy({
         items: reviews,
-        sortBy: action.payload.sort ? action.payload.sort : undefined,
-        align: action.payload.align ? action.payload.align : undefined,
+        sortBy: action.payload.sort ? action.payload.sort : sort,
+        align: action.payload.align ? action.payload.align : align,
       });
 
-      console.log(sortByAction);
-
       state.reviews = sortByAction;
+      if (action.payload.sort) state.sortBy = action.payload.sort;
+      if (action.payload.align) state.align = action.payload.align;
     },
   },
 });

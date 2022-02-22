@@ -57,14 +57,14 @@ export default function ReviewListTest() {
   const onUpdateSortId = () => {
     dispatch(
       updateSort({
-        sort: "asc",
+        sort: "id",
       })
     );
   };
   const onUpdateSortCreatedAt = () => {
     dispatch(
       updateSort({
-        sort: "asc",
+        sort: "createdAt",
       })
     );
   };
