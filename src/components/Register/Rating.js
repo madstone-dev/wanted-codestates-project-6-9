@@ -1,22 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import star from '../src_assets/star.png'
-import star_on from '../src_assets/star_on.png'
-
-const Star = styled.div`
-  width: 50px;
-  height: 50px;
-  background-image : ${props => props.clicked ? `url(${star_on})` : `url(${star})`};
-  background-size: cover;
-  &:hover{
-    cursor : pointer;
-  };
-`;
-
-const StarWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`
+import star from '../../src_assets/star.png'
+import star_on from '../../src_assets/star_on.png'
 
 export default function Rating({scoreBoolean,setScoreBoolean}) {
 
@@ -37,3 +22,18 @@ export default function Rating({scoreBoolean,setScoreBoolean}) {
     </StarWrapper>
   );
 };
+
+const Star = styled.div`
+  width: 50px;
+  height: 50px;
+  background-image : ${props => props.clicked ? `url(${star_on})` : `url(${star})`};
+  background-size: cover;
+  &:hover{
+    cursor : pointer;
+  };
+`;
+
+const StarWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;

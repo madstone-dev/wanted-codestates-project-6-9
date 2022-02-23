@@ -1,22 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import camera from '../src_assets/camera.png'
-
-const FileContainer = styled.div`
-  margin-right : 50px;
-  img {
-    max-width: 50px;
-  };
-  label {
-    cursor: pointer;
-  };
-  input[type="file"] {
-    position: absolute;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-  };
-`;
+import camera from '../../src_assets/camera.png'
 
 export default function FileSelector({setImgBase64,setImgFile}) {
   const handleChangeFile = (event) => {
@@ -50,3 +34,19 @@ export default function FileSelector({setImgBase64,setImgFile}) {
   </FileContainer>
   )
 }
+
+const FileContainer = styled.div`
+  margin-right : 50px;
+  img {
+    max-width: 50px;
+  };
+  label {
+    cursor: pointer;
+  };
+  input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  };
+`;
