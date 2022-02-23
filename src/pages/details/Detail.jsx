@@ -32,9 +32,8 @@ const Detail = () => {
   }
 
   const SelectedProduct = (id) => {
-    const selectedReview = reviews.filter((review) => review.id === id)
-    // selectedReview
-    return <ProductsCard review={{ id: "idg", title: "dd" }} />
+    const selectedReview = reviews?.filter((review) => review.id === 2)[0]
+    return <ProductsCard review={selectedReview} />
   }
 
   return (
