@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const Header = (props) => {
+const Header = ({ title }) => {
   const navigate = useNavigate();
 
   const escape = () => {
@@ -12,7 +12,7 @@ const Header = (props) => {
   return (
     <HeaderComponent>
       <EscapeBtn onClick={escape} />
-      <HeaderTitle>리뷰 상세보기</HeaderTitle>
+      <HeaderTitle>{title}</HeaderTitle>
       <CloseBtn onClick={escape} />
     </HeaderComponent>
   );

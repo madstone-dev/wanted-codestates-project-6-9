@@ -41,7 +41,7 @@ const Detail = () => {
   return (
     <DetailContainer>
       <DetailWrapper>
-        <Header />
+        <Header title={'리뷰 상세보기'} />
         <ProductsContainer>
           <SelectedProduct />
           {reviews

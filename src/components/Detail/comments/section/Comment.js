@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-const Comment = ({ comment, reviews }) => {
+const Comment = ({ comment }) => {
   const getTimelapse = () => {
     let now = Date.now();
     let result = now - comment.createdAt;
