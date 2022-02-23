@@ -27,7 +27,6 @@ const DetailContainer = styled.div`
 `
 
 const DetailWrapper = styled.div`
-  width: 500px;
   margin: auto;
 
   background-color: #fff;
