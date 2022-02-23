@@ -7,8 +7,8 @@ import InputTitle from '../components/Register/InputTitle';
 import BtnRegister from '../components/Register/BtnRegister';
 import { useDispatch } from 'react-redux';
 import { addReview } from '../reducers/reviewReducer';
-import { EscapeBtn, CloseBtn, HeaderTitle } from '../components/Header';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 
 export default function Register() {
   const [scoreBoolean, setScoreBoolean] = useState([
@@ -50,12 +50,13 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <HeaderComponent>
+    <Container>
+      <Header title="리뷰 등록"/>
+      {/* <HeaderComponent>
         <EscapeBtn onClick={escape} />
         <HeaderTitle>리뷰 등록</HeaderTitle>
         <CloseBtn onClick={escape} />
-      </HeaderComponent>
+      </HeaderComponent> */}
       <Inner>
         <form onSubmit={handleSubmit}>
           <Preview imgBase64={imgBase64} />
@@ -75,28 +76,22 @@ export default function Register() {
           <BtnRegister />
         </form>
       </Inner>
-    </div>
+    </Container>
   );
 }
 
-const HeaderComponent = styled.nav`
-  width: 500px;
-  box-shadow: 0 0px 3px 0px #ccc;
-  background: #fff;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.4rem 0;
+const Container = styled.div`
+  width:550px;
+  height : 100vh;
 `;
 
 const Inner = styled.section`
-  max-width: 500px;
   box-sizing: border-box;
   position: relative;
   margin: 0 auto;
   border: 1px solid #e5e5e5;
-  padding: 0 25px;
+  padding: 75px 25px 0;
+  height : 100%;
 `;
 
 const IconContainer = styled.div`
