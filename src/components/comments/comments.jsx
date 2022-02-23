@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../../reducers/reviewReducer";
 
 const Comments = props => {
-  const { comments } = useSelector(state => state.reviews);
+  const { reviews } = useSelector(state => state);
   const dispatch = useDispatch();
 
-  console.log(comments);
+  console.log(reviews);
 
   const [text, setText] = useState("");
   const inputRef = useRef();
@@ -24,11 +24,9 @@ const Comments = props => {
     if (text === "") {
       alert("내용을 입력해주세요.");
     } else {
-      let data = {
-        content: text,
-        reviewId: "user1"
-      };
-      let result = dispatch(addComment(data));
+      let content = text;
+      let reviewId;
+      let result = dispatch(addComment({ content, reviewId }));
       console.log(result);
     }
     setText("");
@@ -36,9 +34,9 @@ const Comments = props => {
 
   return (
     <CommentsComponent>
-      {comments &&
-        comments.map((comment, index) =>
-          <Comment comment={comment} key={index} />
+      {reviews &&
+        reviews.comments.map((comment, index) =>
+          <Comment comment={comment} reviews={reviews} key={index} />
         )}
       <FormComponent onSubmit={onSubmit}>
         <input

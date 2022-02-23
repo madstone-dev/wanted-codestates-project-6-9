@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, reviews }) => {
   return (
     <CommentComponent>
       <CommentContent>
-        <span>
-          {comment.reviewId}
-        </span>
+        <span>userId</span>
         <div>
           {comment.content}
         </div>

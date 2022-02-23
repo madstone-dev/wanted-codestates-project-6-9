@@ -38,15 +38,14 @@ export default Scrolltotop;
 const ScrollToTopButton = styled.button`
   opacity: ${props => (props.visible ? 1 : 0)};
   background-color: #ddd;
-  position: fixed;
-  right: 2rem;
+  position: absolute;
+  bottom: 100px;
   outline: none;
-  bottom: 5.5rem;
   width: 4.2rem;
   height: 4.2rem;
   background: rgba(249, 249, 249, 1);
   box-sizing: border-box;
-  z-index: 1000;
+  z-index: 99;
   border-radius: 0.5rem;
   border: none;
 `;

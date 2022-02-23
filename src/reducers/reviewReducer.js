@@ -8,7 +8,7 @@ function Review({ id, title, image, score }) {
     score: Number(score),
     createdAt: Date.now(),
     comments: [],
-    commentCnt: 0,
+    commentCnt: 0
   };
 }
 
@@ -17,7 +17,7 @@ function Comment({ id, content, reviewId }) {
     id,
     content,
     reviewId,
-    createdAt: Date.now(),
+    createdAt: Date.now()
   };
 }
 
@@ -25,7 +25,7 @@ const initialState = {
   reviews: [],
   comments: [],
   sortBy: "createdAt",
-  align: "asc",
+  align: "asc"
 };
 
 const findOne = (items, payload) =>
@@ -78,7 +78,7 @@ export const reviewSlice = createSlice({
       const sortedByIdAsc = sortBy({
         items: reviews,
         sortBy: "id",
-        align: "asc",
+        align: "asc"
       });
 
       const id = sortedByIdAsc[sortedByIdAsc.length - 1]
@@ -91,7 +91,7 @@ export const reviewSlice = createSlice({
       const sortByState = sortBy({
         items: newReviews,
         sortBy: sort,
-        align,
+        align
       });
 
       state.reviews = sortByState;
@@ -129,7 +129,7 @@ export const reviewSlice = createSlice({
       const sortByAction = sortBy({
         items: reviews,
         sortBy: action.payload.sort ? action.payload.sort : sort,
-        align: action.payload.align ? action.payload.align : align,
+        align: action.payload.align ? action.payload.align : align
       });
 
       state.reviews = sortByAction;
@@ -170,8 +170,8 @@ export const reviewSlice = createSlice({
       );
       state.comments = deletedComments;
       updateCommentInReviews(reviews, deletedComments, comment.reviewId, state);
-    },
-  },
+    }
+  }
 });
 
 export const {
@@ -180,7 +180,7 @@ export const {
   deleteReview,
   updateSort,
   addComment,
-  deleteComment,
+  deleteComment
 } = reviewSlice.actions;
 
 export default reviewSlice.reducer;
