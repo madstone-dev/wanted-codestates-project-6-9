@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const Comment = ({ comment, reviews }) => {
+  const getTimelapse = () => {
+    let now = Date.now();
+    let result = now - comment.createdAt;
+    let minute = Math.floor(result / 60000);
+    let hour = Math.floor(minute / 60);
+    let date = Math.floor(hour / 24);
+    if (hour > 24) {
+      return `${date}일 전`;
+    } else if (minute > 60) {
+      return `${hour}시간 전`;
+    } else if (result > 60000) {
+      return `${minute}분 전`;
+    } else if (result < 60000) {
+      return "방금 전";
+    }
+  };
+
+  useEffect(() => {
+    getTimelapse();
+  });
+
   return (
     <CommentComponent>
       <CommentContent>
@@ -12,7 +33,7 @@ const Comment = ({ comment, reviews }) => {
       </CommentContent>
       <TimeLapse>
         <span>
-          {comment.createdAt}
+          {getTimelapse()}
         </span>
       </TimeLapse>
     </CommentComponent>

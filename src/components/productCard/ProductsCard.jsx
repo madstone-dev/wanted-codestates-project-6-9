@@ -10,8 +10,6 @@ const ProductsCard = ({ review }) => {
   const [showShare, setShowShare] = useState(false)
   const [likeCount, setLikeCount] = useState(0)
 
-  console.log('[Product Card]:', review)
-
   const handleShowShare = (show) => {
     // 모달창 띄웠을 때 스크롤 방지
     document.body.style.overflow = show ? "hidden" : "unset"
