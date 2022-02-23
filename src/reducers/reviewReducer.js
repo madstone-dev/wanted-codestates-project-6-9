@@ -7,11 +7,23 @@ function Review({ id, title, image, score }) {
     image: image ? URL.createObjectURL(image) : undefined,
     score: Number(score),
     createdAt: Date.now(),
+    comments: [],
+    commentCnt: 0,
+  };
+}
+
+function Comment({ id, content, reviewId }) {
+  return {
+    id,
+    content,
+    reviewId,
+    createdAt: Date.now(),
   };
 }
 
 const initialState = {
   reviews: [],
+  comments: [],
   sortBy: "createdAt",
   align: "asc",
 };
@@ -38,33 +50,44 @@ const sortBy = ({ items, sortBy, align }) => {
   throw new Error("align은 'asc' 또는 'desc' 입니다.");
 };
 
+const getCommentsInReviews = (comments, reviewId) => {
+  return comments.filter((comment) => comment.reviewId === reviewId);
+};
+
+const updateCommentInReviews = (reviews, comments, reviewId, state) => {
+  const commentsInReviews = getCommentsInReviews(comments, reviewId);
+  const newReviews = reviews.map((review) => {
+    if (review.id === reviewId) {
+      const newReview = { ...review };
+      newReview.commentCnt = commentsInReviews.length;
+      newReview.comments = commentsInReviews;
+      return newReview;
+    }
+    return review;
+  });
+  state.reviews = newReviews;
+};
+
 export const reviewSlice = createSlice({
   name: "review",
   initialState,
   reducers: {
     addReview: (state, action) => {
-      // 현재 상태 받아오기
       const { reviews, sortBy: sort, align } = current(state);
 
-      // 아이디 순으로 정렬
       const sortedByIdAsc = sortBy({
         items: reviews,
         sortBy: "id",
         align: "asc",
       });
 
-      // 마지막 아이디 추가
       const id = sortedByIdAsc[sortedByIdAsc.length - 1]
         ? sortedByIdAsc[sortedByIdAsc.length - 1].id + 1
         : 1;
 
-      // 새로운 리뷰 생성
       const newReview = new Review({ ...action.payload, id });
-
-      // 새로운 리뷰 리스트에 넣기
       const newReviews = [...sortedByIdAsc, newReview];
 
-      // 상태의 정렬 기준으로 정렬
       const sortByState = sortBy({
         items: newReviews,
         sortBy: sort,
@@ -74,27 +97,17 @@ export const reviewSlice = createSlice({
       state.reviews = sortByState;
     },
     updateReview: (state, action) => {
-      // 현재 상태
       const reviews = current(state).reviews;
-
-      // action 으로 받은 상태
       const { id, title, image, score } = action.payload;
 
-      // 하나 찾기
       const exists = findOne(reviews, id);
 
-      // 없다면 리턴
       if (!exists) return;
-
-      // 있으면 복사
       const review = { ...exists };
 
-      // 각각 있으면 업데이트
       if (title) review.title = title;
       if (image) review.image = URL.createObjectURL(image);
       if (score) review.score = Number(score);
-
-      // 현재 리뷰 업데이트
       const newReviews = reviews.map((_review) => {
         if (_review.id === id) {
           return review;
@@ -105,16 +118,14 @@ export const reviewSlice = createSlice({
       state.reviews = newReviews;
     },
     deleteReview: (state, action) => {
-      // 현재 상태
-      const reviews = current(state).reviews;
-
-      // action.payload 는 id 입니다.
+      const { reviews, comments } = current(state);
+      state.comments = comments.filter(
+        (comment) => comment.reviewId !== action.payload
+      );
       state.reviews = reviews.filter((review) => review.id !== action.payload);
     },
     updateSort: (state, action) => {
       const { reviews, sortBy: sort, align } = current(state);
-
-      // action의 정렬 기준으로 정렬
       const sortByAction = sortBy({
         items: reviews,
         sortBy: action.payload.sort ? action.payload.sort : sort,
@@ -125,10 +136,51 @@ export const reviewSlice = createSlice({
       if (action.payload.sort) state.sortBy = action.payload.sort;
       if (action.payload.align) state.align = action.payload.align;
     },
+    // 세은님 작업부분
+    addComment: (state, action) => {
+      const { reviews, comments } = current(state);
+      const review = reviews.find(
+        (review) => review.id === action.payload.reviewId
+      );
+      if (!review) {
+        return;
+      }
+
+      const id = comments[comments.length - 1]
+        ? comments[comments.length - 1].id + 1
+        : 1;
+      const newComment = new Comment({ ...action.payload, id });
+      const newComments = [...comments, newComment];
+      state.comments = newComments;
+      updateCommentInReviews(
+        reviews,
+        newComments,
+        action.payload.reviewId,
+        state
+      );
+    },
+    deleteComment: (state, action) => {
+      const { reviews, comments } = current(state);
+      const comment = comments.find((comment) => comment.id === action.payload);
+      if (!comment) {
+        return;
+      }
+      const deletedComments = comments.filter(
+        (comment) => comment.id !== action.payload
+      );
+      state.comments = deletedComments;
+      updateCommentInReviews(reviews, deletedComments, comment.reviewId, state);
+    },
   },
 });
 
-export const { addReview, updateReview, deleteReview, updateSort } =
-  reviewSlice.actions;
+export const {
+  addReview,
+  updateReview,
+  deleteReview,
+  updateSort,
+  addComment,
+  deleteComment,
+} = reviewSlice.actions;
 
 export default reviewSlice.reducer;
