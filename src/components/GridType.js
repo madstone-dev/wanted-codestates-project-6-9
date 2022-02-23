@@ -16,7 +16,7 @@ const GridList = ({ reviews }) => {
           </Review>
         ))}
       </Container>
-      <InfiniteScroll />
+      {reviews.length > 0 && <InfiniteScroll />}
     </>
   );
 };
