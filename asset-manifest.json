@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/wanted-codestates-project-6-9/static/css/main.85f20337.css",
+    "main.js": "/wanted-codestates-project-6-9/static/js/main.d424d11b.js",
+    "static/media/star.png": "/wanted-codestates-project-6-9/static/media/star.19ecda2f97b8e9dc5aa8.png",
+    "static/media/camera.png": "/wanted-codestates-project-6-9/static/media/camera.e4b171aa2da395b00e68.png",
+    "index.html": "/wanted-codestates-project-6-9/index.html",
+    "main.85f20337.css.map": "/wanted-codestates-project-6-9/static/css/main.85f20337.css.map",
+    "main.d424d11b.js.map": "/wanted-codestates-project-6-9/static/js/main.d424d11b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.85f20337.css",
+    "static/js/main.d424d11b.js"
+  ]
+}
