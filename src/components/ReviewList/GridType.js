@@ -5,6 +5,31 @@ import styled from 'styled-components';
 import Scrolltotop from '../ScrollToTop';
 import InfiniteScroll from './InfiniteScroll';
 
+const Container = styled.section`
+  width: 100%;
+
+  margin-top: 3px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1px;
+
+  overflow: hidden;
+`;
+
+const Review = styled.div`
+  width: 11.5rem;
+  height: 11.5rem;
+  cursor: pointer;
+  overflow: hidden;
+`;
+
+const ReviewImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 const GridList = ({ reviews }) => {
   const maxPage = useSelector((state) => state.reviews.maxPage);
   const page = useSelector((state) => state.reviews.page);
@@ -30,28 +55,3 @@ const GridList = ({ reviews }) => {
 };
 
 export default GridList;
-
-const Container = styled.section`
-  width: 100%;
-
-  margin-top: 3px;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1px;
-
-  overflow: hidden;
-`;
-
-const Review = styled.div`
-  width: 11.5rem;
-  height: 11.5rem;
-  cursor: pointer;
-  overflow: hidden;
-`;
-
-const ReviewImg = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;

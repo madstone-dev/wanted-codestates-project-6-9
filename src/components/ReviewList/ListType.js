@@ -4,6 +4,11 @@ import styled from 'styled-components';
 import InfiniteScroll from './InfiniteScroll';
 import ProductsCard from '../ProductsCard';
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const GridList = ({ reviews }) => {
   const maxPage = useSelector((state) => state.reviews.maxPage);
   const page = useSelector((state) => state.reviews.page);
@@ -22,8 +27,3 @@ const GridList = ({ reviews }) => {
 };
 
 export default GridList;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
