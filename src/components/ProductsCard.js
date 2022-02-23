@@ -58,9 +58,7 @@ const ProductsCard = ({ review }) => {
         </CardHeaderRight>
       </CardHeader>
       <CardImageContainer>
-        <Image
-          src={review.image ?? 'https://i.balaan.io/review/RV0000021430-2.webp'}
-        />
+        <Image src={review.image} />
       </CardImageContainer>
       <CardDescContainer>
         <InfoSection>
@@ -100,7 +98,7 @@ const ProductsCard = ({ review }) => {
           ))}
         </StarsSection>
         <Options>구매 옵션명: 35</Options>
-        <Review>{review.title ?? '아이 예뻐요 사진이랑 똑같습니다!'}</Review>
+        <Review>{review.title}</Review>
         <TagContainer>
           <Tag>
             사이즈는 어떤가요? <span>정사이즈에요</span>
@@ -140,7 +138,7 @@ const ProductsCard = ({ review }) => {
 };
 
 const CardContainer = styled.div`
-  width: 500px;
+  width: 100%;
 `;
 
 const CardHeader = styled.div`

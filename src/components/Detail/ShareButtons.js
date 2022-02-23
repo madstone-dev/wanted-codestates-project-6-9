@@ -26,7 +26,8 @@ const ShareButtons = ({ showShare, handleShowShare, review }) => {
   };
 
   // 카카오 공유 버튼 생성
-  const createKakaoButton = () => {
+  const createKakaoButton = (e) => {
+    e.stopPropagation();
     if (window.Kakao) {
       const kakao = window.Kakao;
 
@@ -34,11 +35,7 @@ const ShareButtons = ({ showShare, handleShowShare, review }) => {
         kakao.init('34cbf0f18f5987e6e9641ad7f4bc6106'); // env 생성 필요
       }
 
-      console.log(currentUrl);
-      console.log(review);
-
-      kakao.Link.createDefaultButton({
-        container: '#kakao-link-btn',
+      kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
           title: 'balaan',
@@ -71,7 +68,7 @@ const ShareButtons = ({ showShare, handleShowShare, review }) => {
         >
           <FacebookIcon size={80} borderRadius={10} />
         </FacebookShareButton>
-        <KakaoButton id="kakao-link-btn" onClick={createKakaoButton}>
+        <KakaoButton onClick={createKakaoButton}>
           <KakaoImg
             src="https://static.balaan.co.kr/mobile/img/share/btn_share_kt.png"
             alt="kakaotalk"
@@ -101,12 +98,12 @@ const ShareButtonsContainer = styled.div`
 
   display: ${({ show }) => (show ? 'flex' : 'none')};
   flex-direction: column;
-  width: 500px;
+  width: 550px;
   height: 100vh;
 
   background-color: rgba(0, 0, 0, 0.5);
 
-  transform: translateX(-50%);
+  transform: translateX(calc(-50% + 25px));
   z-index: 1000;
 `;
 

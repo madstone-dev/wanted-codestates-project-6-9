@@ -58,14 +58,26 @@ const Detail = () => {
 };
 
 const DetailContainer = styled.div`
+  position: relative;
+
   display: flex;
-  width: 100%;
-  background-color: #f9f9f9;
-  overflow: hidden;
+  width: 550px;
+  height: 100vh;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  background-color: white;
+
+  overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const DetailWrapper = styled.div`
   margin: auto;
+  width: 100%;
   background-color: #fff;
 `;
 

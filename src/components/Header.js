@@ -21,7 +21,7 @@ const Header = (props) => {
 export default Header;
 
 const HeaderComponent = styled.nav`
-  width: 500px;
+  width: 550px;
   position: fixed;
   z-index: 999;
   box-shadow: 0 0px 3px 0px #ccc;
