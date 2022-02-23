@@ -1,15 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Scrolltotop from '../../common/scrollToTop';
-import InfiniteScroll from '../InfiniteScroll';
+import InfiniteScroll from '../ReviewList/InfiniteScroll';
 
 const GridList = ({ reviews }) => {
   const maxPage = useSelector((state) => state.reviews.maxPage);
   const page = useSelector((state) => state.reviews.page);
-
+  const navigate = useNavigate();
   const toDetail = (id) => {
     // 상세 페이지로 이동
+    navigate(`/details/${id}`);
   };
 
   return (
@@ -17,7 +19,7 @@ const GridList = ({ reviews }) => {
       <Container>
         {reviews.map((review) => (
           <Review onClick={toDetail(review.id)} key={review.id}>
-            <ReviewImg src={review.image} alt='' />
+            <ReviewImg src={review.image} alt="" />
           </Review>
         ))}
         <Scrolltotop />
