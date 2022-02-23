@@ -11,6 +11,7 @@ const TypeSelector = ({ viewType, changeType }) => {
       >
         <TypeIcon>
           <Icon
+            selected={viewType === 'grid'}
             src='https://static.balaan.co.kr/mobile/img/icon/contents/tab-icon-01@2x.png'
             alt='그리드'
           />
@@ -23,6 +24,7 @@ const TypeSelector = ({ viewType, changeType }) => {
       >
         <TypeIcon>
           <Icon
+            selected={viewType === 'list'}
             src='https://static.balaan.co.kr/mobile/img/icon/contents/tab-icon-02@2x.png'
             alt='리스트'
           />
@@ -66,4 +68,5 @@ const TypeIcon = styled.div`
 
 const Icon = styled.img`
   width: 2rem;
+  opacity: ${(props) => (props.selected ? '1' : '0.4')};
 `;
