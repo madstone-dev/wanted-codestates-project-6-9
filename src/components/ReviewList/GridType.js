@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Scrolltotop from '../../common/scrollToTop';
-import InfiniteScroll from '../ReviewList/InfiniteScroll';
+import Scrolltotop from '../ScrollToTop';
+import InfiniteScroll from './ReviewList/InfiniteScroll';
 
 const GridList = ({ reviews }) => {
   const maxPage = useSelector((state) => state.reviews.maxPage);
