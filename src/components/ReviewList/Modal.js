@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const ModalContainer = styled.div`
   position: absolute;
@@ -9,6 +9,7 @@ const ModalContainer = styled.div`
   font-weight: 600;
   font-size: 20px;
   color: rgba(0, 0, 0, 0.5);
+  top: 0;
 `;
 const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
@@ -36,7 +37,7 @@ const Items = styled.div`
 `;
 
 const Label = styled.label`
-  color: ${(props) => props.checked && "black"};
+  color: ${(props) => props.checked && 'black'};
 `;
 const ItemHeader = styled.div`
   margin: 25px 0px;
@@ -82,9 +83,9 @@ const ModalButton = styled.button`
 `;
 
 const sortType = [
-  { id: "createdAt", text: "최신순", align: "desc" },
-  { id: "commentCnt", text: "리뷰카운트순", align: "desc" },
-  { id: "random", text: "랜덤 정렬", align: "rnd" },
+  { id: 'createdAt', text: '최신순', align: 'desc' },
+  { id: 'commentCnt', text: '리뷰카운트순', align: 'desc' },
+  { id: 'random', text: '랜덤 정렬', align: 'rnd' },
 ];
 
 const Modal = ({ handleModal, selectedItem, setSelectedItem }) => {
