@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/wanted-codestates-project-6-9/static/css/main.85f20337.css",
-    "main.js": "/wanted-codestates-project-6-9/static/js/main.fc3b15f1.js",
+    "main.js": "/wanted-codestates-project-6-9/static/js/main.0e87032e.js",
     "static/media/star.png": "/wanted-codestates-project-6-9/static/media/star.19ecda2f97b8e9dc5aa8.png",
     "static/media/camera.png": "/wanted-codestates-project-6-9/static/media/camera.e4b171aa2da395b00e68.png",
     "index.html": "/wanted-codestates-project-6-9/index.html",
     "main.85f20337.css.map": "/wanted-codestates-project-6-9/static/css/main.85f20337.css.map",
-    "main.fc3b15f1.js.map": "/wanted-codestates-project-6-9/static/js/main.fc3b15f1.js.map"
+    "main.0e87032e.js.map": "/wanted-codestates-project-6-9/static/js/main.0e87032e.js.map"
   },
   "entrypoints": [
     "static/css/main.85f20337.css",
-    "static/js/main.fc3b15f1.js"
+    "static/js/main.0e87032e.js"
   ]
 }
