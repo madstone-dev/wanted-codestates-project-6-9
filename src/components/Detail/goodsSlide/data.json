@@ -1,49 +1,49 @@
 {"items" : [
   {
     "id": 1,
-    "src" : "/images/01.jpeg",
+    "src" : "https://i.balaan.io/review/7b265fc27e743123d33b9e8d495f270a_800.webp",
     "productName" : "GG 마몽 퀼팅 여성 반지갑",
     "productPrice" : "587,010"
   },
   {
     "id": 2,
-    "src": "/images/02.jpeg",
+    "src": "https://i.balaan.io/images/19/194b32/194b3234feeef00a21c58bd91a79f6fe01e460217c96eee11aba3834375f1abc.webp",
     "productName": "GG 마몽 퀼팅 여성 반지갑",
     "productPrice": "587,010"
   },
   {
     "id" : 3,
-    "src" : "/images/01.jpeg",
+    "src" : "https://i.balaan.io/images/81/81ad8a/81ad8a6629fb034539648ac9cd3b51297cbc93d53dfc0abea15f7acb2e04bda6.webp",
     "productName" : "GG 마몽 퀼팅 여성 반지갑",
     "productPrice" : "587,010"
   },
   {
     "id" : 4,
-    "src" : "/images/02.jpeg",
+    "src" : "https://i.balaan.io/review/7b265fc27e743123d33b9e8d495f270a_800.webp",
     "productName": "GG 마몽 퀼팅 여성 반지갑",
     "productPrice": "587,010"
   },
   {
     "id": 5,
-    "src": "/images/01.jpeg",
+    "src": "https://i.balaan.io/images/19/194b32/194b3234feeef00a21c58bd91a79f6fe01e460217c96eee11aba3834375f1abc.webp",
     "productName": "GG 마몽 퀼팅 여성 반지갑",
     "productPrice": "587,010"
   },
   {
     "id": 6,
-    "src": "/images/02.jpeg",
+    "src" : "https://i.balaan.io/review/7b265fc27e743123d33b9e8d495f270a_800.webp",
     "productName": "GG 마몽 퀼팅 여성 반지갑",
     "productPrice": "587,010"
   },
   {
     "id": 7,
-    "src": "/images/01.jpeg",
+    "src": "https://i.balaan.io/images/19/194b32/194b3234feeef00a21c58bd91a79f6fe01e460217c96eee11aba3834375f1abc.webp",
     "productName": "GG 마몽 퀼팅 여성 반지갑",
     "productPrice": "587,010"
   },
   {
     "id": 8,
-    "src": "/images/02.jpeg",
+    "src" : "https://i.balaan.io/review/7b265fc27e743123d33b9e8d495f270a_800.webp",
     "productName": "GG 마몽 퀼팅 여성 반지갑",
     "productPrice": "587,010"
   }

@@ -9,9 +9,6 @@ import ListType from '../components/ReviewList/ListType';
 import Modal from '../components/ReviewList/Modal';
 
 const Container = styled.div`
-  width: 100vw;
-  /* display: flex;
-  justify-content: center; */
   position: relative;
   background-color: #f9f9f9;
   overflow: hidden;

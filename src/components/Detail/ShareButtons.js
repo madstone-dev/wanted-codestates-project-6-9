@@ -103,7 +103,7 @@ const ShareButtonsContainer = styled.div`
 
   background-color: rgba(0, 0, 0, 0.5);
 
-  transform: translateX(calc(-50% + 25px));
+  transform: translateX(-50%);
   z-index: 1000;
 `;
 
