@@ -51,12 +51,7 @@ export default function Register() {
 
   return (
     <Container>
-      <Header title="리뷰 등록"/>
-      {/* <HeaderComponent>
-        <EscapeBtn onClick={escape} />
-        <HeaderTitle>리뷰 등록</HeaderTitle>
-        <CloseBtn onClick={escape} />
-      </HeaderComponent> */}
+      <Header title="리뷰 등록" />
       <Inner>
         <form onSubmit={handleSubmit}>
           <Preview imgBase64={imgBase64} />
@@ -81,8 +76,18 @@ export default function Register() {
 }
 
 const Container = styled.div`
-  width:550px;
-  height : 100vh;
+  background-color: white;
+  position: relative;
+  width: 550px;
+  height: 100vh;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Inner = styled.section`
@@ -90,8 +95,9 @@ const Inner = styled.section`
   position: relative;
   margin: 0 auto;
   border: 1px solid #e5e5e5;
+  border-bottom: none;
   padding: 75px 25px 0;
-  height : 100%;
+  height: 100%;
 `;
 
 const IconContainer = styled.div`

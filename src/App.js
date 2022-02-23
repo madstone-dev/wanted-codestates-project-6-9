@@ -20,6 +20,6 @@ function App() {
 export default App;
 
 const AppComponent = styled.div`
-  max-width: 500px;
+  max-width: 550px;
   margin: auto;
 `;
