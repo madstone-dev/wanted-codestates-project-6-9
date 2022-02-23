@@ -11,6 +11,7 @@ import { updatePage, updateSort } from '../reducers/reviewReducer';
 const ReviewList = () => {
   const pageItems = useSelector((state) => state.reviews.pageItems);
   const page = useSelector((state) => state.reviews.page);
+  const sortBy = useSelector((state) => state.reviews.sortBy);
 
   const [viewType, setViewType] = useState('grid');
   const [modalView, setModalView] = useState(false);
@@ -25,16 +26,19 @@ const ReviewList = () => {
 
   useEffect(() => {
     setReviews(pageItems);
-  }, []);
+  }, [sortBy]);
 
   useEffect(() => {
     if (page !== 1) {
       setReviews((prev) => [...prev, ...pageItems]);
+    } else {
+      setReviews(pageItems);
     }
-  }, [page, pageItems]);
+  }, [page]);
 
   useEffect(() => {
     dispatch(updateSort({ sort: selectedItem.id, align: selectedItem.align }));
+    dispatch(updatePage(1));
   }, [dispatch, selectedItem]);
 
   const changeType = (type) => {
