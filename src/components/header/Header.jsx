@@ -34,7 +34,7 @@ const HeaderComponent = styled.nav`
   top: 0;
 `;
 
-const HeaderTitle = styled.h3`
+export const HeaderTitle = styled.h3`
   margin: 0;
   padding: 0;
   text-align: center;
@@ -46,7 +46,7 @@ const HeaderTitle = styled.h3`
   white-space: nowrap;
 `;
 
-const EscapeBtn = styled.img`
+export const EscapeBtn = styled.img`
   width: 1.5rem;
   margin: 0.3rem 1.6rem 0;
 `;
@@ -57,7 +57,7 @@ EscapeBtn.defaultProps = {
   alt: "escapebutton"
 };
 
-const CloseBtn = styled.img`
+export const CloseBtn = styled.img`
   width: 1.5rem;
   margin: 0.3rem 1.6rem 0;
 `;
@@ -66,3 +66,4 @@ CloseBtn.defaultProps = {
     "https://djp5oonlusoz4.cloudfront.net/contents/event/20190924/ic_can_btn.png",
   alt: "closebutton"
 };
+

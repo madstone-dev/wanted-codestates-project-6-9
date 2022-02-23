@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Route, Routes } from "react-router-dom"
 import Index from "./pages"
 import Detail from "./pages/details"
+import Register from "./pages/Register"
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/details" element={<Detail />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </AppComponent>
   )
