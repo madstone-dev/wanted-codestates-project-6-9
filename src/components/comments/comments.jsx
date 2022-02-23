@@ -9,13 +9,10 @@ const Comments = ({ review }) => {
   const { reviews } = useSelector(state => state);
   const dispatch = useDispatch();
 
-  console.log(review);
-
   const [text, setText] = useState("");
   const inputRef = useRef();
 
   const setTextValue = e => {
-    console.log(e.target.value);
     setText(e.target.value);
   };
 
@@ -26,8 +23,7 @@ const Comments = ({ review }) => {
     } else {
       let content = text;
       let reviewId = review.id;
-      let result = dispatch(addComment({ content, reviewId }));
-      console.log(result);
+      dispatch(addComment({ content, reviewId }));
     }
     setText("");
   };
@@ -36,7 +32,7 @@ const Comments = ({ review }) => {
     <CommentsComponent>
       {review.comments &&
         review.comments.map((comment, index) =>
-          <Comment comment={comment} reviews={reviews} key={index} />
+          <Comment comment={comment} key={index} />
         )}
       <FormComponent onSubmit={onSubmit}>
         <input
