@@ -1,45 +1,47 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react"
+import styled from "styled-components"
 
-const Scrolltotop = props => {
-  const [visible, setVisible] = useState(false);
+const Scrolltotop = (props) => {
+  const [visible, setVisible] = useState(false)
 
   const ToggleVisibility = () => {
     if (window.pageYOffset > 200) {
-      setVisible(true);
+      setVisible(true)
     } else {
-      setVisible(false);
+      setVisible(false)
     }
-  };
+  }
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
-    });
-  };
+      behavior: "smooth",
+    })
+  }
 
   useEffect(() => {
-    window.addEventListener("scroll", ToggleVisibility);
+    window.addEventListener("scroll", ToggleVisibility)
     return () => {
-      window.removeEventListener("scroll", ToggleVisibility);
-    };
-  }, []);
+      window.removeEventListener("scroll", ToggleVisibility)
+    }
+  }, [])
 
-  return visible
-    ? <ScrollToTopButton visible onClick={scrollToTop}>
-        TOP
-      </ScrollToTopButton>
-    : <ScrollToTopButton onClick={scrollToTop}>TOP</ScrollToTopButton>;
-};
+  return visible ? (
+    <ScrollToTopButton visible onClick={scrollToTop}>
+      TOP
+    </ScrollToTopButton>
+  ) : (
+    <ScrollToTopButton onClick={scrollToTop}>TOP</ScrollToTopButton>
+  )
+}
 
-export default Scrolltotop;
+export default Scrolltotop
 
 const ScrollToTopButton = styled.button`
-  opacity: ${props => (props.visible ? 1 : 0)};
+  opacity: ${(props) => (props.visible ? 1 : 0)};
   background-color: #ddd;
   position: fixed;
-  right: 2rem;
+  right: 50%;
   bottom: 5rem;
   outline: none;
   width: 4.2rem;
@@ -49,4 +51,5 @@ const ScrollToTopButton = styled.button`
   z-index: 99;
   border-radius: 0.5rem;
   border: none;
-`;
+  transform: translateX(200px);
+`
