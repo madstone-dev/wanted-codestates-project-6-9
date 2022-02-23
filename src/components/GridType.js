@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const GridList = ({ reviews }) => {
   const toDetail = (id) => {
@@ -9,8 +9,8 @@ const GridList = ({ reviews }) => {
   return (
     <Container>
       {reviews.map((review) => (
-        <Review onClick={toDetail(1)}>
-          <ReviewImg src={review.image} alt="" />
+        <Review onClick={toDetail(review.id)} key={review.id}>
+          <ReviewImg src={review.image} alt='' />
         </Review>
       ))}
     </Container>

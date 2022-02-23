@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const ModalContainer = styled.div`
   position: absolute;
@@ -36,7 +36,7 @@ const Items = styled.div`
 `;
 
 const Label = styled.label`
-  color: ${(props) => props.checked && "black"};
+  color: ${(props) => props.checked && 'black'};
 `;
 const ItemHeader = styled.div`
   margin: 25px 0px;
@@ -82,9 +82,9 @@ const ModalButton = styled.button`
 `;
 
 const sortType = [
-  { id: "recent", text: "최신순" },
-  { id: "reply", text: "리뷰카운트순" },
-  { id: "random", text: "랜덤 정렬" },
+  { id: 'createdAt', text: '최신순', align: 'desc' },
+  { id: 'commentCnt', text: '리뷰카운트순', align: 'desc' },
+  { id: 'random', text: '랜덤 정렬', align: 'asc' },
 ];
 
 const Modal = ({ handleModal, selectedItem, setSelectedItem }) => {
@@ -114,9 +114,9 @@ const Modal = ({ handleModal, selectedItem, setSelectedItem }) => {
                 {sortItem.text}
               </Label>
               <input
-                type="radio"
+                type='radio'
                 id={sortItem.id}
-                name="sort"
+                name='sort'
                 value={sortItem.id}
                 checked={sortItem.id === checkedItem.id}
                 onChange={handleCheckedChange}
