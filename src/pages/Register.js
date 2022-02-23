@@ -1,38 +1,14 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import Rating from "../components/Rating"
-import Preview from "../components/Preview"
-import FileSelector from "../components/FileSelector"
-import InputTitle from "../components/InputTitle"
-import BtnRegister from "../components/BtnRegister"
-import { useDispatch, useSelector } from "react-redux"
+import Rating from "../components/Register/Rating"
+import Preview from "../components/Register/Preview"
+import FileSelector from "../components/Register/FileSelector"
+import InputTitle from "../components/Register/InputTitle"
+import BtnRegister from "../components/Register/BtnRegister"
+import { useDispatch } from "react-redux"
 import { addReview } from "../reducers/reviewReducer"
 import { EscapeBtn, CloseBtn, HeaderTitle } from "../components/Header"
 import { useNavigate } from "react-router-dom"
-
-const HeaderComponent = styled.nav`
-  width: 500px;
-  box-shadow: 0 0px 3px 0px #ccc;
-  background: #fff;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.4rem 0;
-`
-
-const Inner = styled.section`
-  max-width: 500px;
-  box-sizing: border-box;
-  position: relative;
-  margin: 0 auto;
-  border: 1px solid #e5e5e5;
-  padding: 0 25px;
-`
-
-const IconContainer = styled.div`
-  display: flex;
-`
 
 export default function Register() {
   const [scoreBoolean, setScoreBoolean] = useState([false, false, false, false, false])
@@ -68,7 +44,7 @@ export default function Register() {
   }
 
   return (
-    <div>
+    <div >
       <HeaderComponent>
         <EscapeBtn onClick={escape} />
         <HeaderTitle>리뷰 등록</HeaderTitle>
@@ -88,3 +64,27 @@ export default function Register() {
     </div>
   )
 }
+
+const HeaderComponent = styled.nav`
+  width: 500px;
+  box-shadow: 0 0px 3px 0px #ccc;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 0;
+`
+
+const Inner = styled.section`
+  max-width: 500px;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 auto;
+  border: 1px solid #e5e5e5;
+  padding: 0 25px;
+`
+
+const IconContainer = styled.div`
+  display: flex;
+`

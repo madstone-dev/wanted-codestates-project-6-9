@@ -1,6 +1,12 @@
 import React from 'react'
 import styled from 'styled-components';
 
+export default function Preview({imgBase64}) {
+  return (
+    <ImgBox imgBase64={imgBase64}/>
+  )
+}
+
 const ImgBox = styled.div`
   width: 100%;
   height : 400px;
@@ -9,9 +15,3 @@ const ImgBox = styled.div`
   background-size:cover;
   margin : 10px auto;
 `;
-
-export default function Preview({imgBase64}) {
-  return (
-    <ImgBox imgBase64={imgBase64}/>
-  )
-}
