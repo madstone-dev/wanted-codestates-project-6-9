@@ -8,6 +8,7 @@ import { useSelector } from "react-redux"
 const Detail = () => {
   // list 페이지에서 넘어올 id
   const { reviews } = useSelector((state) => state.reviews)
+  console.log(reviews)
   const [loading, setLoading] = useState(false)
   const [currentItems, setCurrentItems] = useState(1)
   const end = useRef()
@@ -42,9 +43,9 @@ const Detail = () => {
         <Header />
         <ProductsContainer>
           <SelectedProduct />
-          {/* <ProductsCard />
-          <ProductsCard />
-          <ProductsCard /> */}
+          {reviews?.map((review) => (
+            <ProductsCard key={review.id} review={review} />
+          ))}
         </ProductsContainer>
         <Scrolltotop />
       </DetailWrapper>

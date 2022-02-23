@@ -101,7 +101,7 @@ const ProductsCard = ({ review }) => {
         </DeliveryBox>
       </CardDescContainer>
       <GoodsSlide />
-      <Comments />
+      <Comments id={review.id} />
       <Share showShare={showShare} handleShowShare={handleShowShare} />
     </CardContainer>
   )
