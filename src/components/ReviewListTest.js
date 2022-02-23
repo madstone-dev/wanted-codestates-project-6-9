@@ -5,15 +5,35 @@ import {
   updateReview,
   deleteReview,
   updateSort,
+  deleteComment,
+  updatePage,
 } from "../reducers/reviewReducer";
+import CommentListTest from "./CommentListTest";
 
 export default function ReviewListTest() {
-  const { reviews } = useSelector((state) => state.reviews);
-  console.log(reviews);
+  const { pageItems: reviews, maxPage } = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
+
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [score, setScore] = useState(0);
+  const [page, setPage] = useState(1);
+
+  const increasePage = () => {
+    if (page === maxPage) {
+      return;
+    }
+    dispatch(updatePage(page + 1));
+    setPage(page + 1);
+  };
+
+  const decreasePage = () => {
+    if (page === 1) {
+      return;
+    }
+    dispatch(updatePage(page - 1));
+    setPage(page - 1);
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -30,6 +50,7 @@ export default function ReviewListTest() {
   const onChangeScore = (event) => setScore(event.target.value);
 
   const onDelete = (id) => dispatch(deleteReview(id));
+  const onDeleteComment = (id) => dispatch(deleteComment(id));
   const onUpdate = (id) =>
     dispatch(
       updateReview({
@@ -68,14 +89,32 @@ export default function ReviewListTest() {
       })
     );
   };
+  const onUpdateSortCommentCnt = () => {
+    dispatch(
+      updateSort({
+        sort: "commentCnt",
+      })
+    );
+  };
+  const onUpdateSortRandom = () => {
+    dispatch(
+      updateSort({
+        align: "rnd",
+      })
+    );
+  };
 
   return (
     <div>
       <div>
+        <button onClick={onUpdateSortRandom}>Random</button>
         <button onClick={onUpdateSortDesc}>DESC</button>
         <button onClick={onUpdateSortAsc}>ASC</button>
         <button onClick={onUpdateSortId}>ID</button>
         <button onClick={onUpdateSortCreatedAt}>CreatedAt</button>
+        <button onClick={onUpdateSortCommentCnt}>CommentCnt</button>
+        <button onClick={increasePage}>page +</button>
+        <button onClick={decreasePage}>page -</button>
       </div>
       <form onSubmit={onSubmit}>
         <div>
@@ -97,24 +136,52 @@ export default function ReviewListTest() {
           {reviews.map((review, index) => {
             return (
               <li key={index}>
-                <span>id : {review.id}</span>
-                <span>title : {review.title}</span>
-                <img src={review.image} />
-                <span>score : {review.score}</span>
-                <button
-                  onClick={() => {
-                    onDelete(review.id);
-                  }}
-                >
-                  delete
-                </button>
-                <button
-                  onClick={() => {
-                    onUpdate(review.id);
-                  }}
-                >
-                  update
-                </button>
+                <div>
+                  <span>id : {review.id}</span>
+                  <span>title : {review.title}</span>
+                  <img src={review.image} />
+                  <span>score : {review.score}</span>
+                  <span>cnt : {review.commentCnt}</span>
+                  <button
+                    onClick={() => {
+                      onDelete(review.id);
+                    }}
+                  >
+                    delete
+                  </button>
+                  <button
+                    onClick={() => {
+                      onUpdate(review.id);
+                    }}
+                  >
+                    update
+                  </button>
+                </div>
+                <div>
+                  <div>코멘트</div>
+                  <CommentListTest reviewId={review.id} />
+                  <div>리스트</div>
+                  <div>
+                    <ul>
+                      {review.comments.map((comment, index) => {
+                        return (
+                          <li key={index}>
+                            <span>id : {comment.id}</span>
+                            <span>content : {comment.content}</span>
+                            <span>createdAt : {comment.createdAt}</span>
+                            <button
+                              onClick={() => {
+                                onDeleteComment(comment.id);
+                              }}
+                            >
+                              delete
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div>
               </li>
             );
           })}

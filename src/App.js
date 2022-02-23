@@ -1,8 +1,7 @@
-import React from "react"
-import CommentListTest from "./components/CommentListTest"
+import React from "react";
 
 function App() {
-  return <CommentListTest></CommentListTest>
+  return <div className="App">App</div>;
 }
 
-export default App
+export default App;
