@@ -8,7 +8,7 @@ const InputReview=styled.textarea.attrs(props => ({
   width:100%;
   box-sizing : border-box;
   padding : 20px;
-  height : 100px;
+  height : 130px;
   margin : 10px 0;
   border : 1px solid #dbdbdb;
   border-radius : 5px;

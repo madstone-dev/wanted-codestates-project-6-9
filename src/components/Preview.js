@@ -2,9 +2,10 @@ import React from 'react'
 import styled from 'styled-components';
 
 const ImgBox = styled.div`
-  width: 300px;
-  height : 300px;
-  background: ${props => props.imgBase64==="" ? `white` : `url(${props.imgBase64})`};
+  width: 100%;
+  height : 400px;
+  background: ${props => props.imgBase64==="" ? `#F9F9F9` : `url(${props.imgBase64})`};
+  border: ${props => props.imgBase64==="" ? `1px solid #e5e5e5` : 'none'};
   background-size:cover;
   margin : 10px auto;
 `;
