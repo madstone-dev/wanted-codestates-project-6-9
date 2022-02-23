@@ -10,7 +10,6 @@ export default function CommentListTest({ reviewId }) {
     event.preventDefault();
     dispatch(addComment({ content, reviewId }));
   };
-  const onDelete = (id) => dispatch(deleteComment(id));
   const onChangeContent = (event) => setContent(event.target.value);
 
   return (

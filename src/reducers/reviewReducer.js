@@ -118,7 +118,10 @@ export const reviewSlice = createSlice({
       state.reviews = newReviews;
     },
     deleteReview: (state, action) => {
-      const reviews = current(state).reviews;
+      const { reviews, comments } = current(state);
+      state.comments = comments.filter(
+        (comment) => comment.reviewId !== action.payload
+      );
       state.reviews = reviews.filter((review) => review.id !== action.payload);
     },
     updateSort: (state, action) => {
@@ -158,15 +161,15 @@ export const reviewSlice = createSlice({
     },
     deleteComment: (state, action) => {
       const { reviews, comments } = current(state);
-      state.comments = comments.filter(
+      const comment = comments.find((comment) => comment.id === action.payload);
+      if (!comment) {
+        return;
+      }
+      const deletedComments = comments.filter(
         (comment) => comment.id !== action.payload
       );
-      updateCommentInReviews(
-        reviews,
-        state.comments,
-        action.payload.reviewId,
-        state
-      );
+      state.comments = deletedComments;
+      updateCommentInReviews(reviews, deletedComments, comment.reviewId, state);
     },
   },
 });

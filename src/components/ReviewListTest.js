@@ -5,6 +5,7 @@ import {
   updateReview,
   deleteReview,
   updateSort,
+  deleteComment,
 } from "../reducers/reviewReducer";
 import CommentListTest from "./CommentListTest";
 
@@ -31,6 +32,7 @@ export default function ReviewListTest() {
   const onChangeScore = (event) => setScore(event.target.value);
 
   const onDelete = (id) => dispatch(deleteReview(id));
+  const onDeleteComment = (id) => dispatch(deleteComment(id));
   const onUpdate = (id) =>
     dispatch(
       updateReview({
@@ -141,7 +143,7 @@ export default function ReviewListTest() {
                             <span>createdAt : {comment.createdAt}</span>
                             <button
                               onClick={() => {
-                                onDelete(comment.id);
+                                onDeleteComment(comment.id);
                               }}
                             >
                               delete
