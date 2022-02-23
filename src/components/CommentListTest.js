@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addComment, deleteComment } from "../reducers/commentReducer";
-
+import { addComment, deleteComment } from "../reducers/reviewReducer";
 
 export default function CommentListTest() {
-  const { comments } = useSelector((state) => state.comments);
+  const { comments } = useSelector((state) => state.reviews);
   console.log(comments);
   const dispatch = useDispatch();
   const [content, setContent] = useState("");
@@ -16,7 +15,6 @@ export default function CommentListTest() {
   };
   const onDelete = (id) => dispatch(deleteComment(id));
   const onChangeContent = (event) => setContent(event.target.value);
-
 
   return (
     <div>
@@ -41,7 +39,6 @@ export default function CommentListTest() {
                 >
                   delete
                 </button>
-                
               </li>
             );
           })}

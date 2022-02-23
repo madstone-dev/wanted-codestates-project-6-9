@@ -68,6 +68,13 @@ export default function ReviewListTest() {
       })
     );
   };
+  const onUpdateSortCommentCnt = () => {
+    dispatch(
+      updateSort({
+        sort: "commentCnt",
+      })
+    );
+  };
 
   return (
     <div>
@@ -76,6 +83,7 @@ export default function ReviewListTest() {
         <button onClick={onUpdateSortAsc}>ASC</button>
         <button onClick={onUpdateSortId}>ID</button>
         <button onClick={onUpdateSortCreatedAt}>CreatedAt</button>
+        <button onClick={onUpdateSortCommentCnt}>CommentCnt</button>
       </div>
       <form onSubmit={onSubmit}>
         <div>
@@ -101,6 +109,7 @@ export default function ReviewListTest() {
                 <span>title : {review.title}</span>
                 <img src={review.image} />
                 <span>score : {review.score}</span>
+                <span>cnt : {review.commentCnt}</span>
                 <button
                   onClick={() => {
                     onDelete(review.id);
