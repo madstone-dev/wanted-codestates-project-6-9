@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-const Header = props => {
+const Header = (props) => {
   const navigate = useNavigate();
 
   const escape = () => {
-    navigate("/");
+    navigate('/');
   };
 
   return (
@@ -52,9 +52,8 @@ export const EscapeBtn = styled.img`
 `;
 
 EscapeBtn.defaultProps = {
-  src:
-    "https://djp5oonlusoz4.cloudfront.net/contents/event/20190924/ic_left_btn.png",
-  alt: "escapebutton"
+  src: 'https://djp5oonlusoz4.cloudfront.net/contents/event/20190924/ic_left_btn.png',
+  alt: 'escapebutton',
 };
 
 export const CloseBtn = styled.img`
@@ -62,8 +61,6 @@ export const CloseBtn = styled.img`
   margin: 0.3rem 1.6rem 0;
 `;
 CloseBtn.defaultProps = {
-  src:
-    "https://djp5oonlusoz4.cloudfront.net/contents/event/20190924/ic_can_btn.png",
-  alt: "closebutton"
+  src: 'https://djp5oonlusoz4.cloudfront.net/contents/event/20190924/ic_can_btn.png',
+  alt: 'closebutton',
 };
-

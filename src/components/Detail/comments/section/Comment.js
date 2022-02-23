@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
 
 const Comment = ({ comment, reviews }) => {
   const getTimelapse = () => {
@@ -15,7 +15,7 @@ const Comment = ({ comment, reviews }) => {
     } else if (result > 60000) {
       return `${minute}분 전`;
     } else if (result < 60000) {
-      return "방금 전";
+      return '방금 전';
     }
   };
 
@@ -27,14 +27,10 @@ const Comment = ({ comment, reviews }) => {
     <CommentComponent>
       <CommentContent>
         <span>userId</span>
-        <div>
-          {comment.content}
-        </div>
+        <div>{comment.content}</div>
       </CommentContent>
       <TimeLapse>
-        <span>
-          {getTimelapse()}
-        </span>
+        <span>{getTimelapse()}</span>
       </TimeLapse>
     </CommentComponent>
   );
