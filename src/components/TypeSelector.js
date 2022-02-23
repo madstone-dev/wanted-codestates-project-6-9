@@ -9,14 +9,26 @@ const TypeSelector = ({ viewType, changeType }) => {
         selected={viewType === 'grid'}
         onClick={() => changeType('grid')}
       >
-        <TypeIcon>그리드</TypeIcon>
+        <TypeIcon>
+          <Icon
+            selected={viewType === 'grid'}
+            src='https://static.balaan.co.kr/mobile/img/icon/contents/tab-icon-01@2x.png'
+            alt='그리드'
+          />
+        </TypeIcon>
       </Type>
       <Type
         viewType='list'
         selected={viewType === 'list'}
         onClick={() => changeType('list')}
       >
-        <TypeIcon>리스트</TypeIcon>
+        <TypeIcon>
+          <Icon
+            selected={viewType === 'list'}
+            src='https://static.balaan.co.kr/mobile/img/icon/contents/tab-icon-02@2x.png'
+            alt='리스트'
+          />
+        </TypeIcon>
       </Type>
     </Container>
   );
@@ -26,7 +38,7 @@ export default TypeSelector;
 
 const Container = styled.section`
   width: 100%;
-  height: 3rem;
+  height: 4rem;
   background-color: red;
 
   display: flex;
@@ -46,4 +58,15 @@ const Type = styled.div`
   cursor: pointer;
 `;
 
-const TypeIcon = styled.div``;
+const TypeIcon = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Icon = styled.img`
+  width: 2rem;
+  opacity: ${(props) => (props.selected ? '1' : '0.4')};
+`;

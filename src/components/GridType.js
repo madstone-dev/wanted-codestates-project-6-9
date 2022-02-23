@@ -1,19 +1,27 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import InfiniteScroll from './InfiniteScroll';
 
 const GridList = ({ reviews }) => {
+  const maxPage = useSelector((state) => state.reviews.maxPage);
+  const page = useSelector((state) => state.reviews.page);
+
   const toDetail = (id) => {
     // 상세 페이지로 이동
   };
 
   return (
-    <Container>
-      {reviews.map((review) => (
-        <Review onClick={toDetail(review.id)} key={review.id}>
-          <ReviewImg src={review.image} alt='' />
-        </Review>
-      ))}
-    </Container>
+    <>
+      <Container>
+        {reviews.map((review) => (
+          <Review onClick={toDetail(review.id)} key={review.id}>
+            <ReviewImg src={review.image} alt='' />
+          </Review>
+        ))}
+      </Container>
+      {reviews.length > 0 && maxPage !== page && <InfiniteScroll />}
+    </>
   );
 };
 
@@ -32,7 +40,8 @@ const Container = styled.section`
 `;
 
 const Review = styled.div`
-  width: 100%;
+  width: 11.5rem;
+  height: 11.5rem;
   cursor: pointer;
   overflow: hidden;
 `;
