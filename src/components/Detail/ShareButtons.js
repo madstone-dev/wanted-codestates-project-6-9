@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton } from "react-share"
 import styled from "styled-components"
 
-const Share = ({ showShare, handleShowShare, reviewContent }) => {
+const ShareButtons = ({ showShare, handleShowShare, reviewContent }) => {
   const currentUrl = window.location.href
 
   const [show, setShow] = useState(showShare)
@@ -131,4 +131,4 @@ const URLImg = styled.img`
   cursor: pointer;
 `
 
-export default Share
+export default ShareButtons
