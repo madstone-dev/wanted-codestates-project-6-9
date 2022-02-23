@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton } from "react-share"
 import styled from "styled-components"
 
-const Share = ({ showShare, handleShowShare }) => {
+const Share = ({ showShare, handleShowShare, reviewContent }) => {
   const currentUrl = window.location.href
 
   const [show, setShow] = useState(showShare)
@@ -33,21 +33,16 @@ const Share = ({ showShare, handleShowShare }) => {
           objectType: "feed",
           content: {
             title: "balaan",
-            description: "#리액트 #카카오 #공유버튼",
+            description: "#리액트 #카카오 #공유버튼", // reviewContent
             imageUrl: "https://i.balaan.io/review/RV0000021430-2.webp",
             link: {
               mobileWebUrl: window.location.href,
               webUrl: window.location.href,
             },
           },
-          social: {
-            likeCount: 77,
-            commentCount: 55,
-            sharedCount: 333,
-          },
           buttons: [
             {
-              title: "웹으로 보기",
+              title: "리뷰 보기",
               link: {
                 mobileWebUrl: window.location.href,
                 webUrl: window.location.href,
@@ -67,9 +62,9 @@ const Share = ({ showShare, handleShowShare }) => {
         <FacebookShareButton url={currentUrl} onClick={(e) => e.stopPropagation()}>
           <FacebookIcon size={80} borderRadius={10} />
         </FacebookShareButton>
-        <button id="kakao-link-btn">
-          <img src="/icons/kakao.png" alt="kakao-share-icon" />
-        </button>
+        <KakaoButton id="kakao-link-btn">
+          <KakaoImg src="https://static.balaan.co.kr/mobile/img/share/btn_share_kt.png" alt="kakaotalk" />
+        </KakaoButton>
         <TwitterShareButton url={currentUrl} onClick={(e) => e.stopPropagation()}>
           <TwitterIcon size={80} borderRadius={10} />
         </TwitterShareButton>
@@ -82,16 +77,19 @@ const Share = ({ showShare, handleShowShare }) => {
 }
 
 const ShareContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
 
   display: ${({ show }) => (show ? "flex" : "none")};
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  width: 500px;
+  height: 100vh;
 
   background-color: rgba(0, 0, 0, 0.5);
+
+  transform: translateX(-50%);
+  z-index: 1000;
 `
 
 const ShareWrapper = styled.div`
@@ -99,6 +97,22 @@ const ShareWrapper = styled.div`
   flex-direction: column;
   margin: auto;
   gap: 10px;
+`
+
+const KakaoButton = styled.button`
+  width: 80px;
+  height: 80px;
+  background: none;
+  border: none;
+  padding: 0;
+`
+
+const KakaoImg = styled.img`
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  cursor: pointer;
 `
 
 const URLButton = styled.button`

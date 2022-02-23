@@ -9,7 +9,12 @@ const ProductsCard = () => {
   const [thumbClicked, setThumbClicked] = useState(false)
   const [showShare, setShowShare] = useState(false)
 
-  const handleShowShare = (show) => setShowShare(show)
+  const handleShowShare = (show) => {
+    //! 모달창 띄웠을 때 스크롤 방지
+    document.body.style.overflow = show ? "hidden" : "unset"
+
+    setShowShare(show)
+  }
 
   // kakao script 넣기
   useEffect(() => {
@@ -97,7 +102,6 @@ const ProductsCard = () => {
 }
 
 const CardContainer = styled.div`
-  position: relative;
   width: 500px;
 `
 
