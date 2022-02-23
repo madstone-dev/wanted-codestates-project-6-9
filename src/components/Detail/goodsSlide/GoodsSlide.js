@@ -1,28 +1,24 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import items from "./data.json";
+import items from './data.json';
 
-const GoodsSlide = props => {
+const GoodsSlide = (props) => {
   const goods = items.items;
   return (
     <Goods>
       <ItemList>
         {goods
-          ? goods.map((item, index) =>
+          ? goods.map((item, index) => (
               <Item key={index}>
                 <ItemImage src={`${item.src}`} alt={item.productName} />
                 <ItemInfo>
-                  <span>
-                    {item.productName}
-                  </span>
-                  <span>
-                    {item.productPrice}원
-                  </span>
+                  <span>{item.productName}</span>
+                  <span>{item.productPrice}원</span>
                 </ItemInfo>
               </Item>
-            )
-          : ""}
+            ))
+          : ''}
       </ItemList>
     </Goods>
   );
@@ -63,7 +59,9 @@ const Item = styled.li`
   }
 `;
 
-const ItemImage = styled.img`width: 100%;`;
+const ItemImage = styled.img`
+  width: 100%;
+`;
 
 const ItemInfo = styled.div`
   margin-top: 0.9rem;
