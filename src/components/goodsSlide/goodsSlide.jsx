@@ -1,63 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const items = [
-  {
-    id: 1,
-    src: "/images/01.jpeg",
-    productName: "GG 마몽 퀼팅 여성 반지갑",
-    productPrice: "587,010"
-  },
-  {
-    id: 2,
-    src: "/images/02.jpeg",
-    productName: "GG 마몽 퀼팅 여성 반지갑",
-    productPrice: "587,010"
-  },
-  {
-    id: 3,
-    src: "/images/01.jpeg",
-    productName: "GG 마몽 퀼팅 여성 반지갑",
-    productPrice: "587,010"
-  },
-  {
-    id: 4,
-    src: "/images/02.jpeg",
-    productName: "GG 마몽 퀼팅 여성 반지갑",
-    productPrice: "587,010"
-  },
-  {
-    id: 5,
-    src: "/images/01.jpeg",
-    productName: "GG 마몽 퀼팅 여성 반지갑",
-    productPrice: "587,010"
-  },
-  {
-    id: 6,
-    src: "/images/02.jpeg",
-    productName: "GG 마몽 퀼팅 여성 반지갑",
-    productPrice: "587,010"
-  },
-  {
-    id: 7,
-    src: "/images/01.jpeg",
-    productName: "GG 마몽 퀼팅 여성 반지갑",
-    productPrice: "587,010"
-  },
-  {
-    id: 8,
-    src: "/images/02.jpeg",
-    productName: "GG 마몽 퀼팅 여성 반지갑",
-    productPrice: "587,010"
-  }
-];
+import items from "./data.json";
 
 const GoodsSlide = props => {
+  const goods = items.items;
   return (
     <Goods>
       <ItemList>
-        {items
-          ? items.map((item, index) =>
+        {goods
+          ? goods.map((item, index) =>
               <Item key={index}>
                 <ItemImage src={`${item.src}`} alt={item.productName} />
                 <ItemInfo>

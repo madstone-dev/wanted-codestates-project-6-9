@@ -46,8 +46,8 @@ const Detail = () => {
           <ProductsCard />
           <ProductsCard /> */}
         </ProductsContainer>
+        <Scrolltotop />
       </DetailWrapper>
-      <Scrolltotop />
       <div ref={end} />
     </DetailContainer>
   )
