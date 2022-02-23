@@ -1,7 +1,8 @@
-import React from "react"
-import ProductsCard from "../../components/productCard/ProductsCard"
-import Header from "../../components/header/Header"
-import styled from "styled-components"
+import React from "react";
+import ProductsCard from "../../components/productCard/ProductsCard";
+import Header from "../../components/header/Header";
+import styled from "styled-components";
+import Scrolltotop from "../../common/scrollToTop";
 
 const Detail = () => {
   return (
@@ -14,9 +15,10 @@ const Detail = () => {
           <ProductsCard />
         </ProductsContainer>
       </DetailWrapper>
+      <Scrolltotop />
     </DetailContainer>
-  )
-}
+  );
+};
 
 const DetailContainer = styled.div`
   display: flex;
@@ -24,16 +26,14 @@ const DetailContainer = styled.div`
 
   background-color: #f9f9f9;
   overflow: hidden;
-`
+`;
 
 const DetailWrapper = styled.div`
   margin: auto;
 
   background-color: #fff;
-`
+`;
 
-const ProductsContainer = styled.div`
-  padding-top: 75px;
-`
+const ProductsContainer = styled.div`padding-top: 75px;`;
 
-export default Detail
+export default Detail;

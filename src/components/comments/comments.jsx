@@ -2,13 +2,17 @@ import React, { useState, useRef } from "react";
 import Comment from "./section/comment";
 import styled from "styled-components";
 
-const getDate = () => {
-  let date = new Date();
-  console.log(date);
-};
+import { useDispatch, useSelector } from "react-redux";
+import { addComment } from "../../reducers/commentReducer";
 
 const Comments = props => {
+  const { comments } = useSelector(state => state.comments);
+  const dispatch = useDispatch();
+
+  console.log(comments);
+
   const [text, setText] = useState("");
+  const [id, setId] = useState(1);
   const inputRef = useRef();
 
   const setTextValue = e => {
@@ -18,22 +22,29 @@ const Comments = props => {
 
   const onSubmit = e => {
     e.preventDefault();
-    getDate();
-    let data = {
-      userId: Date.now(),
-      text: text,
-      createdAt: "25주"
-    };
-    console.log(data);
-    // comment 저장
-    inputRef.current.value = "";
+    if (text === "") {
+      alert("내용을 입력해주세요.");
+    } else {
+      let data = {
+        id,
+        content: text,
+        reviewId: "user1"
+      };
+      let result = dispatch(addComment(data));
+      console.log(result);
+      setId(prev => prev + 1);
+    }
+    setText("");
   };
 
   return (
     <CommentsComponent>
-      {true && <Comment />}
+      {comments &&
+        comments.map((comment, index) =>
+          <Comment comment={comment} key={index} />
+        )}
       <FormComponent onSubmit={onSubmit}>
-        <CommentInput
+        <input
           ref={inputRef}
           type="text"
           value={text}
@@ -63,17 +74,21 @@ const FormComponent = styled.form`
   color: #333;
   border: 0;
   outline: 0;
-`;
-
-const CommentInput = styled.input`
-  font-size: 1.3rem;
-  border: none;
-  padding: 1rem;
-  width: 100%;
-  border-radius: 4rem 0 0 4rem;
-  border-right: 0;
-  padding-left: 2rem;
-  border: 1px solid #ddd;
+  input {
+    font-size: 1.3rem;
+    border: none;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 4rem 0 0 4rem;
+    border-right: 0;
+    padding-left: 2rem;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    &:focus {
+      outline: none;
+    }
+  }
 `;
 
 const SubmitButton = styled.button`
@@ -85,5 +100,7 @@ const SubmitButton = styled.button`
   border-radius: 0 4rem 4rem 0;
   background: #fff;
   border: none;
-  border: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 `;

@@ -79,7 +79,7 @@ const GoodsSlide = props => {
 export default GoodsSlide;
 
 const Goods = styled.div`
-  height: 253px;
+  height: 16rem;
   overflow: scroll;
   ::-webkit-scrollbar {
     display: none;
@@ -88,28 +88,34 @@ const Goods = styled.div`
 
 const ItemList = styled.ul`
   margin: 0;
-  height: 100%;
+  height: 99%;
   padding: 0;
   width: 250%;
   display: flex;
   flex-direction: row;
   & li:nth-child(1) {
     margin-left: 1.5rem;
+    box-shadow: 0px 0px 5px 2px rgba(141, 141, 141, 0.2);
   }
 `;
 
 const Item = styled.li`
+  height: 95%;
   list-style: none;
   cursor: pointer;
   width: 8.5rem;
   margin-right: 1rem;
-  padding-top: 0.65rem;
+  margin-top: 0.65rem;
+  &:hover {
+    transform: scale(1.01);
+  }
 `;
 
 const ItemImage = styled.img`width: 100%;`;
 
 const ItemInfo = styled.div`
   margin-top: 0.9rem;
+  margin-bottom: 0.9rem;
   padding: 0 0.4rem;
   text-align: center;
   span {

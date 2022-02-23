@@ -1,15 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
-const Comment = props => {
+const Comment = ({ comment }) => {
   return (
     <CommentComponent>
       <CommentContent>
-        <span>member Id</span>
-        <div>구매 후 바로 취소해도 반송료 받던데...</div>
+        <span>
+          {comment.reviewId}
+        </span>
+        <div>
+          {comment.content}
+        </div>
       </CommentContent>
       <TimeLapse>
-        <span>52주</span>
+        <span>
+          {comment.createdAt}
+        </span>
       </TimeLapse>
     </CommentComponent>
   );
