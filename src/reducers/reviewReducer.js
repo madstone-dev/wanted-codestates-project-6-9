@@ -148,10 +148,10 @@ export const reviewSlice = createSlice({
     deleteReview: (state, action) => {
       const { reviews, comments, page } = current(state);
       state.comments = comments.filter(
-        (comment) => comment.reviewId !== action.payload
+        (comment) => comment.reviewId !== action.payload,
       );
       const deletedReviews = reviews.filter(
-        (review) => review.id !== action.payload
+        (review) => review.id !== action.payload,
       );
       state.reviews = deletedReviews;
       state.pageItems = getPageItems(deletedReviews, page, state);
@@ -170,11 +170,10 @@ export const reviewSlice = createSlice({
       state.reviews = sortByAction;
       state.pageItems = getPageItems(sortByAction, page, state);
     },
-    // 세은님 작업부분
     addComment: (state, action) => {
       const { reviews, comments, page } = current(state);
       const review = reviews.find(
-        (review) => review.id === action.payload.reviewId
+        (review) => review.id === action.payload.reviewId,
       );
       if (!review) {
         return;
@@ -190,7 +189,7 @@ export const reviewSlice = createSlice({
         reviews,
         newComments,
         action.payload.reviewId,
-        state
+        state,
       );
       state.pageItems = getPageItems(state.reviews, page, state);
     },
@@ -201,7 +200,7 @@ export const reviewSlice = createSlice({
         return;
       }
       const deletedComments = comments.filter(
-        (comment) => comment.id !== action.payload
+        (comment) => comment.id !== action.payload,
       );
       state.comments = deletedComments;
       updateCommentInReviews(reviews, deletedComments, comment.reviewId, state);
