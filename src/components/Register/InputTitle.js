@@ -1,6 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 
+export default function InputTitle({title,setTitle}) {
+  const handleTitle = (event)=>{
+    setTitle(event.target.value)
+  };
+  
+  return (
+    <InputReview value={title} onChange={handleTitle}/>
+  )
+}
+
 const InputReview=styled.textarea.attrs(props => ({
   placeholder : "리뷰를 작성해 주세요",
 }))`
@@ -13,13 +23,3 @@ const InputReview=styled.textarea.attrs(props => ({
   border : 1px solid #dbdbdb;
   border-radius : 5px;
 `;
-
-export default function InputTitle({title,setTitle}) {
-  const handleTitle = (event)=>{
-    setTitle(event.target.value)
-  };
-  
-  return (
-    <InputReview value={title} onChange={handleTitle}/>
-  )
-}
