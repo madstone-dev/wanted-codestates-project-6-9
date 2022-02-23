@@ -7,6 +7,7 @@ function Review({ id, title, image, score }) {
     image: image ? URL.createObjectURL(image) : undefined,
     score: Number(score),
     createdAt: Date.now(),
+    comments: [],
     commentCnt: 0,
   };
 }
@@ -53,12 +54,13 @@ const getCommentsInReviews = (comments, reviewId) => {
   return comments.filter((comment) => comment.reviewId === reviewId);
 };
 
-const updateCommentCntInReviews = (reviews, comments, reviewId, state) => {
+const updateCommentInReviews = (reviews, comments, reviewId, state) => {
   const commentsInReviews = getCommentsInReviews(comments, reviewId);
   const newReviews = reviews.map((review) => {
     if (review.id === reviewId) {
       const newReview = { ...review };
       newReview.commentCnt = commentsInReviews.length;
+      newReview.comments = commentsInReviews;
       return newReview;
     }
     return review;
@@ -147,7 +149,7 @@ export const reviewSlice = createSlice({
       const newComment = new Comment({ ...action.payload, id });
       const newComments = [...comments, newComment];
       state.comments = newComments;
-      updateCommentCntInReviews(
+      updateCommentInReviews(
         reviews,
         newComments,
         action.payload.reviewId,
@@ -159,7 +161,7 @@ export const reviewSlice = createSlice({
       state.comments = comments.filter(
         (comment) => comment.id !== action.payload
       );
-      updateCommentCntInReviews(
+      updateCommentInReviews(
         reviews,
         state.comments,
         action.payload.reviewId,

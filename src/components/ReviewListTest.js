@@ -6,6 +6,7 @@ import {
   deleteReview,
   updateSort,
 } from "../reducers/reviewReducer";
+import CommentListTest from "./CommentListTest";
 
 export default function ReviewListTest() {
   const { reviews } = useSelector((state) => state.reviews);
@@ -105,25 +106,52 @@ export default function ReviewListTest() {
           {reviews.map((review, index) => {
             return (
               <li key={index}>
-                <span>id : {review.id}</span>
-                <span>title : {review.title}</span>
-                <img src={review.image} />
-                <span>score : {review.score}</span>
-                <span>cnt : {review.commentCnt}</span>
-                <button
-                  onClick={() => {
-                    onDelete(review.id);
-                  }}
-                >
-                  delete
-                </button>
-                <button
-                  onClick={() => {
-                    onUpdate(review.id);
-                  }}
-                >
-                  update
-                </button>
+                <div>
+                  <span>id : {review.id}</span>
+                  <span>title : {review.title}</span>
+                  <img src={review.image} />
+                  <span>score : {review.score}</span>
+                  <span>cnt : {review.commentCnt}</span>
+                  <button
+                    onClick={() => {
+                      onDelete(review.id);
+                    }}
+                  >
+                    delete
+                  </button>
+                  <button
+                    onClick={() => {
+                      onUpdate(review.id);
+                    }}
+                  >
+                    update
+                  </button>
+                </div>
+                <div>
+                  <div>코멘트</div>
+                  <CommentListTest reviewId={review.id} />
+                  <div>리스트</div>
+                  <div>
+                    <ul>
+                      {review.comments.map((comment, index) => {
+                        return (
+                          <li key={index}>
+                            <span>id : {comment.id}</span>
+                            <span>content : {comment.content}</span>
+                            <span>createdAt : {comment.createdAt}</span>
+                            <button
+                              onClick={() => {
+                                onDelete(comment.id);
+                              }}
+                            >
+                              delete
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div>
               </li>
             );
           })}
