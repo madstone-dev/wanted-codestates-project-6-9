@@ -27,13 +27,15 @@ const initialState = {
   comments: dummyComments,
   sortBy: "createdAt",
   align: "asc",
+  pageItems: [],
+  page: 1,
+  maxPage: 1,
 };
 
 const findOne = (items, payload) =>
   items.find((review) => review.id === payload);
 
 const sortBy = ({ items, sortBy, align }) => {
-  console.log(sortBy, align);
   const _items = [...items];
   if (align === "asc") {
     return _items.sort((a, b) => {
@@ -47,6 +49,8 @@ const sortBy = ({ items, sortBy, align }) => {
       if (a[sortBy] < b[sortBy]) return 1;
       if (a[sortBy] === b[sortBy]) return 0;
     });
+  } else if (align === "rnd") {
+    return _items.sort(() => (Math.random() > 0.5 ? 1 : -1));
   }
   throw new Error("align은 'asc' 또는 'desc' 입니다.");
 };
@@ -69,12 +73,26 @@ const updateCommentInReviews = (reviews, comments, reviewId, state) => {
   state.reviews = newReviews;
 };
 
+const PAGE_SIZE = 2;
+const getPageItems = (items, page, state) => {
+  const pageItems = items.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const maxPage = Math.ceil(items.length / PAGE_SIZE);
+  state.maxPage = maxPage;
+  if (pageItems.length > 0) {
+    state.page = page;
+    return pageItems;
+  } else {
+    state.page = maxPage;
+    return items.slice((maxPage - 1) * PAGE_SIZE, maxPage * PAGE_SIZE);
+  }
+};
+
 export const reviewSlice = createSlice({
   name: "review",
   initialState,
   reducers: {
     addReview: (state, action) => {
-      const { reviews, sortBy: sort, align } = current(state);
+      const { reviews, sortBy: sort, align, page } = current(state);
 
       const sortedByIdAsc = sortBy({
         items: reviews,
@@ -96,9 +114,10 @@ export const reviewSlice = createSlice({
       });
 
       state.reviews = sortByState;
+      state.pageItems = getPageItems(sortByState, page, state);
     },
     updateReview: (state, action) => {
-      const reviews = current(state).reviews;
+      const { reviews, page } = current(state);
       const { id, title, image, score } = action.payload;
 
       const exists = findOne(reviews, id);
@@ -117,25 +136,32 @@ export const reviewSlice = createSlice({
         }
       });
       state.reviews = newReviews;
+      state.pageItems = getPageItems(newReviews, page, state);
     },
     deleteReview: (state, action) => {
-      const { reviews, comments } = current(state);
+      const { reviews, comments, page } = current(state);
       state.comments = comments.filter(
         (comment) => comment.reviewId !== action.payload
       );
-      state.reviews = reviews.filter((review) => review.id !== action.payload);
+      const deletedReviews = reviews.filter(
+        (review) => review.id !== action.payload
+      );
+      state.reviews = deletedReviews;
+      state.pageItems = getPageItems(deletedReviews, page, state);
     },
     updateSort: (state, action) => {
-      const { reviews, sortBy: sort, align } = current(state);
+      const { reviews, sortBy: sort, align, page } = current(state);
       const sortByAction = sortBy({
         items: reviews,
         sortBy: action.payload.sort ? action.payload.sort : sort,
         align: action.payload.align ? action.payload.align : align,
       });
 
-      state.reviews = sortByAction;
       if (action.payload.sort) state.sortBy = action.payload.sort;
       if (action.payload.align) state.align = action.payload.align;
+
+      state.reviews = sortByAction;
+      state.pageItems = getPageItems(sortByAction, page, state);
     },
     // 세은님 작업부분
     addComment: (state, action) => {
@@ -172,6 +198,10 @@ export const reviewSlice = createSlice({
       state.comments = deletedComments;
       updateCommentInReviews(reviews, deletedComments, comment.reviewId, state);
     },
+    updatePage: (state, action) => {
+      const { reviews } = current(state);
+      state.pageItems = getPageItems(reviews, action.payload, state);
+    },
   },
 });
 
@@ -182,6 +212,7 @@ export const {
   updateSort,
   addComment,
   deleteComment,
+  updatePage,
 } = reviewSlice.actions;
 
 export default reviewSlice.reducer;

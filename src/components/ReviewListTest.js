@@ -6,16 +6,34 @@ import {
   deleteReview,
   updateSort,
   deleteComment,
+  updatePage,
 } from "../reducers/reviewReducer";
 import CommentListTest from "./CommentListTest";
 
 export default function ReviewListTest() {
-  const { reviews } = useSelector((state) => state.reviews);
-  console.log(reviews);
+  const { pageItems: reviews, maxPage } = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
+
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [score, setScore] = useState(0);
+  const [page, setPage] = useState(1);
+
+  const increasePage = () => {
+    if (page === maxPage) {
+      return;
+    }
+    dispatch(updatePage(page + 1));
+    setPage(page + 1);
+  };
+
+  const decreasePage = () => {
+    if (page === 1) {
+      return;
+    }
+    dispatch(updatePage(page - 1));
+    setPage(page - 1);
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -78,15 +96,25 @@ export default function ReviewListTest() {
       })
     );
   };
+  const onUpdateSortRandom = () => {
+    dispatch(
+      updateSort({
+        align: "rnd",
+      })
+    );
+  };
 
   return (
     <div>
       <div>
+        <button onClick={onUpdateSortRandom}>Random</button>
         <button onClick={onUpdateSortDesc}>DESC</button>
         <button onClick={onUpdateSortAsc}>ASC</button>
         <button onClick={onUpdateSortId}>ID</button>
         <button onClick={onUpdateSortCreatedAt}>CreatedAt</button>
         <button onClick={onUpdateSortCommentCnt}>CommentCnt</button>
+        <button onClick={increasePage}>page +</button>
+        <button onClick={decreasePage}>page -</button>
       </div>
       <form onSubmit={onSubmit}>
         <div>
