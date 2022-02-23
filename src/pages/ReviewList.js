@@ -8,6 +8,29 @@ import GridType from '../components/ReviewList/GridType';
 import ListType from '../components/ReviewList/ListType';
 import Modal from '../components/ReviewList/Modal';
 
+const Container = styled.div`
+  width: 100vw;
+  /* display: flex;
+  justify-content: center; */
+  position: relative;
+  background-color: #f9f9f9;
+  overflow: hidden;
+`;
+
+const ContentContainer = styled.div`
+  background-color: white;
+  position: relative;
+  width: 550px;
+  height: 100vh;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
 
 const ReviewList = () => {
   const pageItems = useSelector((state) => state.reviews.pageItems);
@@ -73,27 +96,3 @@ const ReviewList = () => {
 };
 
 export default ReviewList;
-
-const Container = styled.div`
-  width: 100vw;
-  /* display: flex;
-  justify-content: center; */
-  position: relative;
-  background-color: #f9f9f9;
-  overflow: hidden;
-`;
-
-const ContentContainer = styled.div`
-  background-color: white;
-  position: relative;
-  width: 550px;
-  height: 100vh;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  overflow: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
