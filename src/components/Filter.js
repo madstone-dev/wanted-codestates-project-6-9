@@ -23,6 +23,7 @@ const FilterView = styled.div`
   background-color: #f9f9f9;
   display: flex;
   padding: 15px 25px;
+  cursor: default;
 `;
 const ViewItem = styled.div`
   background-color: #e7e8f9;
