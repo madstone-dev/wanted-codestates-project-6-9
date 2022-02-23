@@ -12,6 +12,7 @@ import CommentListTest from "./CommentListTest";
 
 export default function ReviewListTest() {
   const { pageItems: reviews, maxPage } = useSelector((state) => state.reviews);
+  console.log(reviews);
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
@@ -138,8 +139,12 @@ export default function ReviewListTest() {
               <li key={index}>
                 <div>
                   <span>id : {review.id}</span>
-                  <span>title : {review.title}</span>
-                  <img src={review.image} />
+                  <div>
+                    <img src={review.image} width="100" height="100" />
+                  </div>
+                  <div>
+                    <span>title : {review.title}</span>
+                  </div>
                   <span>score : {review.score}</span>
                   <span>cnt : {review.commentCnt}</span>
                   <button
@@ -160,7 +165,6 @@ export default function ReviewListTest() {
                 <div>
                   <div>코멘트</div>
                   <CommentListTest reviewId={review.id} />
-                  <div>리스트</div>
                   <div>
                     <ul>
                       {review.comments.map((comment, index) => {

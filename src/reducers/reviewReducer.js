@@ -1,4 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
+import { dummyComments, dummyReviews } from "../constances";
 
 function Review({ id, title, image, score }) {
   return {
@@ -21,14 +22,35 @@ function Comment({ id, content, reviewId }) {
   };
 }
 
+const PAGE_SIZE = 15;
+
 const initialState = {
-  reviews: [],
-  comments: [],
+  reviews: dummyReviews,
+  comments: dummyComments,
   sortBy: "createdAt",
-  align: "asc",
-  pageItems: [],
+  align: "desc",
+  pageItems: dummyReviews
+    .sort((a, b) => {
+      if (a["createdAt"] > b["createdAt"]) return -1;
+      if (a["createdAt"] < b["createdAt"]) return 1;
+      if (a["createdAt"] === b["createdAt"]) return 0;
+    })
+    .slice(0, PAGE_SIZE),
   page: 1,
-  maxPage: 1,
+  maxPage: Math.ceil(dummyReviews.length / PAGE_SIZE),
+};
+
+const getPageItems = (items, page, state) => {
+  const pageItems = items.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const maxPage = Math.ceil(items.length / PAGE_SIZE);
+  state.maxPage = maxPage;
+  if (pageItems.length > 0) {
+    state.page = page;
+    return pageItems;
+  } else {
+    state.page = maxPage;
+    return items.slice((maxPage - 1) * PAGE_SIZE, maxPage * PAGE_SIZE);
+  }
 };
 
 const findOne = (items, payload) =>
@@ -51,7 +73,7 @@ const sortBy = ({ items, sortBy, align }) => {
   } else if (align === "rnd") {
     return _items.sort(() => (Math.random() > 0.5 ? 1 : -1));
   }
-  throw new Error("align은 'asc' 또는 'desc' 입니다.");
+  throw new Error("허용되는 align은 'asc' 'desc' 'rdn' 입니다.");
 };
 
 const getCommentsInReviews = (comments, reviewId) => {
@@ -70,20 +92,6 @@ const updateCommentInReviews = (reviews, comments, reviewId, state) => {
     return review;
   });
   state.reviews = newReviews;
-};
-
-const PAGE_SIZE = 2;
-const getPageItems = (items, page, state) => {
-  const pageItems = items.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
-  const maxPage = Math.ceil(items.length / PAGE_SIZE);
-  state.maxPage = maxPage;
-  if (pageItems.length > 0) {
-    state.page = page;
-    return pageItems;
-  } else {
-    state.page = maxPage;
-    return items.slice((maxPage - 1) * PAGE_SIZE, maxPage * PAGE_SIZE);
-  }
 };
 
 export const reviewSlice = createSlice({
@@ -164,7 +172,7 @@ export const reviewSlice = createSlice({
     },
     // 세은님 작업부분
     addComment: (state, action) => {
-      const { reviews, comments } = current(state);
+      const { reviews, comments, page } = current(state);
       const review = reviews.find(
         (review) => review.id === action.payload.reviewId
       );
@@ -184,9 +192,10 @@ export const reviewSlice = createSlice({
         action.payload.reviewId,
         state
       );
+      state.pageItems = getPageItems(state.reviews, page, state);
     },
     deleteComment: (state, action) => {
-      const { reviews, comments } = current(state);
+      const { reviews, comments, page } = current(state);
       const comment = comments.find((comment) => comment.id === action.payload);
       if (!comment) {
         return;
@@ -196,6 +205,7 @@ export const reviewSlice = createSlice({
       );
       state.comments = deletedComments;
       updateCommentInReviews(reviews, deletedComments, comment.reviewId, state);
+      state.pageItems = getPageItems(state.reviews, page, state);
     },
     updatePage: (state, action) => {
       const { reviews } = current(state);
