@@ -5,11 +5,11 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../../reducers/reviewReducer";
 
-const Comments = props => {
+const Comments = ({ review }) => {
   const { reviews } = useSelector(state => state);
   const dispatch = useDispatch();
 
-  console.log(reviews);
+  console.log(review);
 
   const [text, setText] = useState("");
   const inputRef = useRef();
@@ -25,7 +25,7 @@ const Comments = props => {
       alert("내용을 입력해주세요.");
     } else {
       let content = text;
-      let reviewId;
+      let reviewId = review.id;
       let result = dispatch(addComment({ content, reviewId }));
       console.log(result);
     }
@@ -34,8 +34,8 @@ const Comments = props => {
 
   return (
     <CommentsComponent>
-      {reviews &&
-        reviews.comments.map((comment, index) =>
+      {review.comments &&
+        review.comments.map((comment, index) =>
           <Comment comment={comment} reviews={reviews} key={index} />
         )}
       <FormComponent onSubmit={onSubmit}>
