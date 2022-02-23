@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import Filter from "../components/Filter";
-import GridType from "../components/GridType";
-import Modal from "../components/Modal";
-import TypeSelector from "../components/TypeSelector";
-import ListType from "../components/ListType";
-import { useDispatch, useSelector } from "react-redux";
-import { updatePage, updateSort } from "../reducers/reviewReducer";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Filter from '../components/Filter';
+import GridType from '../components/ReviewList/GridType';
+import Modal from '../components/ReviewList/Modal';
+import TypeSelector from '../components/ReviewList/TypeSelector';
+import ListType from '../components/ReviewList/ListType';
+import { useDispatch, useSelector } from 'react-redux';
+import { updatePage, updateSort } from '../reducers/reviewReducer';
 
 const ReviewList = () => {
   const pageItems = useSelector((state) => state.reviews.pageItems);
   const page = useSelector((state) => state.reviews.page);
 
-  const [viewType, setViewType] = useState("grid");
+  const [viewType, setViewType] = useState('grid');
   const [modalView, setModalView] = useState(false);
   const [reviews, setReviews] = useState([]);
 
   const [selectedItem, setSelectedItem] = useState({
-    id: "createdAt",
-    text: "최신순",
-    align: "desc",
+    id: 'createdAt',
+    text: '최신순',
+    align: 'desc',
   });
   const dispatch = useDispatch();
 
@@ -50,7 +50,7 @@ const ReviewList = () => {
       <ContentContainer>
         <Filter handleModal={handleModal} selectedItem={selectedItem} />
         <TypeSelector viewType={viewType} changeType={changeType} />
-        {viewType === "grid" ? (
+        {viewType === 'grid' ? (
           <GridType reviews={reviews} />
         ) : (
           <ListType reviews={reviews} />
