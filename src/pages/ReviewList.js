@@ -36,6 +36,7 @@ const ReviewList = () => {
   const pageItems = useSelector((state) => state.reviews.pageItems);
   const page = useSelector((state) => state.reviews.page);
   const sortBy = useSelector((state) => state.reviews.sortBy);
+  const comments = useSelector((state) => state.reviews.comments);
 
   const [viewType, setViewType] = useState('grid');
   const [modalView, setModalView] = useState(false);
@@ -50,7 +51,7 @@ const ReviewList = () => {
 
   useEffect(() => {
     setReviews(pageItems);
-  }, [sortBy]);
+  }, [sortBy, comments]);
 
   useEffect(() => {
     if (page !== 1) {
