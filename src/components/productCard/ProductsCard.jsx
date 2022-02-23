@@ -35,12 +35,22 @@ const ProductsCard = ({ review }) => {
     setLikeCount((prev) => (thumbClicked ? prev - 1 : prev + 1))
   }
 
+  // Date format 변경(yyyy-mm-dd)
+  const convertDateFormat = (date) => {
+    const newDate = new Date(date)
+    const year = newDate.getFullYear()
+    const month = newDate.getMonth() + 1 < 10 ? `0${newDate.getMonth() + 1}` : newDate.getMonth() + 1
+    const day = newDate.getDate() < 10 ? `0${newDate.getDate()}` : newDate.getDate()
+
+    return `${year}-${month}-${day}`
+  }
+
   return (
     <CardContainer>
       <CardHeader>
         <User>{review.id ?? "userid"}</User>
         <CardHeaderRight>
-          <CreatedTime>{review.createdAt}</CreatedTime>
+          <CreatedTime>{convertDateFormat(review.createdAt)}</CreatedTime>
           <ReportDiv>
             <ReportButton onClick={() => setShowReportBtn((prev) => !prev)} src="https://i.balaan.io/mobile/img/icon/icon-more.png" />
             <ReportPopup show={showReportBtn}>
@@ -72,8 +82,8 @@ const ProductsCard = ({ review }) => {
         <StarsSection>
           {Array.from([1, 2, 3, 4, 5], (el) => (
             <StarImg key={el}>
-              <source type="image/webp" srcSet="https://i.balaan.io/mobile/img/icons/icon-star-black.webp" />
-              <img src="https://i.balaan.io/mobile/img/icons/icon-star-black.png" alt="star" />
+              <source type="image/webp" srcSet={`https://i.balaan.io/mobile/img/icons/icon-star-${el <= review.score ? "black" : "gray"}.webp`} />
+              <img src={`https://i.balaan.io/mobile/img/icons/icon-star-${el <= review.score ? "black" : "gray"}.png`} alt="star" />
             </StarImg>
           ))}
         </StarsSection>
@@ -150,8 +160,8 @@ const ReportButton = styled.img`
 
 const ReportPopup = styled.div`
   position: absolute;
-  top: 4.5rem;
-  right: 3rem;
+  top: 9rem;
+  right: 5rem;
 
   display: ${({ show }) => (show ? "flex" : "none")};
   align-items: center;
