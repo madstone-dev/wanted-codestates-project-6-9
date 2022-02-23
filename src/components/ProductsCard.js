@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import Share from "../share"
-import GoodsSlide from "../goodsSlide/goodsSlide"
-import Comments from "../comments/comments"
+import ShareButtons from "../components/Detail/ShareButtons"
+import GoodsSlide from "../components/Detail/goodsSlide/GoodsSlide"
+import Comments from "../components/Detail/comments/Comments"
 
 const ProductsCard = ({ review }) => {
   const [showReportBtn, setShowReportBtn] = useState(false)
@@ -112,7 +112,7 @@ const ProductsCard = ({ review }) => {
       </CardDescContainer>
       <GoodsSlide />
       <Comments review={review} />
-      <Share showShare={showShare} handleShowShare={handleShowShare} />
+      <ShareButtons showShare={showShare} handleShowShare={handleShowShare} />
     </CardContainer>
   )
 }
