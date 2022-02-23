@@ -1,44 +1,101 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# [**Project 1**] 발란 실습 과제
 
-## Available Scripts
+## 🔗 배포 주소
 
-In the project directory, you can run:
+- 아래 URL을 클릭하면 배포된 페이지로 이동합니다.
 
-### `npm start`
+https://madstone-dev.github.io/wanted-codestates-project-6-9/#/
+    
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<br>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## ****⚙****개발 환경
 
-### `npm test`
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br>
 
-### `npm run build`
+## 🧑 참여 멤버
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 강현구 : 리뷰 등록 페이지 구현
+- 김도연 : 리뷰 리스트 페이지 구현
+- 정규용: 리뷰 리스트 페이지 구현
+- 유지수 : 리뷰 상세 페이지 구현
+- 유혜정: 리뷰 상세 페이지 구현
+- 손한빈:  리뷰 리덕스 모듈 구현
+- 박세은 : 댓글 리덕스 모듈  구현
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🕹  설치 및 시작방법
 
-### `npm run eject`
+```
+# install dependencies
+ $ npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# serve with hot reload at localhost:3000
+ $ npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 📝 구현 목록
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+상품 리뷰 기능 구현 : 고객이 리뷰를 등록 하고 리뷰를 확인할 수 있는 기능을 구현
 
-## Learn More
+리뷰와 댓글의 정보는 `redux`를 통해 관리하였습니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### ✅ 리뷰 등록 페이지
+![리뷰등록 (1)](https://user-images.githubusercontent.com/81206124/155338386-838818a9-45e4-4359-9e8d-add5fbf25d58.gif)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+- 리뷰 제목, 이미지 선택, 평점등록 가능
+
+### ✅ 리뷰 리스트 페이지
+![정렬](https://user-images.githubusercontent.com/81206124/155333246-48ad7e25-a8a2-41ea-9ffc-45bd3a473bed.gif)  ![무한스크롤 ](https://user-images.githubusercontent.com/81206124/155337003-8fa37dd4-bced-4492-951c-999afce9e77b.gif)
+
+
+
+- 정렬 (최신순, 리뷰카운트순, 랜덤)
+- 리뷰 목록 표시 형태선택 가능(그리드 뷰, 리스트 뷰)
+- 리뷰리스트 무한 스크롤
+
+### ✅ 리뷰 상세 페이지
+
+![댓글작성](https://user-images.githubusercontent.com/81206124/155333048-0cde7c36-5b72-429f-8c07-636293519c90.gif)     ![좋아요:링크](https://user-images.githubusercontent.com/81206124/155336856-63a82264-ca47-4ee1-baab-1cb63b17a28e.gif)
+
+- 리뷰 댓글 달기
+- 좋아요
+- 링크 공유
+
+<br>
+
+## 🗂 프로젝트 구조
+```
+📁src
+│  App.js
+│  constances.js
+│  index.js
+│  reset.css
+│  store.js
+│
+├─📁components
+│	│ Filter.js
+│	│ Header.js
+│	│ ProductsCard.js
+│	│ ScrollToTop.js
+│       ├─📁Detail
+│       ├─📁Register
+│       └─📁ReviwList
+│
+├─📁pages
+│      Detail.js
+│      Register.js
+│      ReviewList.js
+│      index.js
+│
+├─📁reducers
+│	  reviewReducer.js
+│			
+└─📁src_assets
+```
