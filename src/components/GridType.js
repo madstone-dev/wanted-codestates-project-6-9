@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import InfiniteScroll from './InfiniteScroll';
 
 const GridList = ({ reviews }) => {
   const toDetail = (id) => {
@@ -7,13 +8,16 @@ const GridList = ({ reviews }) => {
   };
 
   return (
-    <Container>
-      {reviews.map((review) => (
-        <Review onClick={toDetail(review.id)} key={review.id}>
-          <ReviewImg src={review.image} alt='' />
-        </Review>
-      ))}
-    </Container>
+    <>
+      <Container>
+        {reviews.map((review) => (
+          <Review onClick={toDetail(review.id)} key={review.id}>
+            <ReviewImg src={review.image} alt='' />
+          </Review>
+        ))}
+      </Container>
+      <InfiniteScroll />
+    </>
   );
 };
 
@@ -32,7 +36,8 @@ const Container = styled.section`
 `;
 
 const Review = styled.div`
-  width: 100%;
+  width: 11.5rem;
+  height: 11.5rem;
   cursor: pointer;
   overflow: hidden;
 `;
