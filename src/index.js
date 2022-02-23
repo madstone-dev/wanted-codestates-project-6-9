@@ -1,18 +1,18 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import App from "./App"
-import { store } from "./store"
-import { Provider } from "react-redux"
-import { BrowserRouter } from "react-router-dom"
-import "./reset.css"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { store } from './store';
+import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
+import './reset.css';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   </React.StrictMode>,
-  document.getElementById("root")
-)
+  document.getElementById('root'),
+);
