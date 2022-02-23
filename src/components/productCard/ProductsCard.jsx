@@ -8,8 +8,14 @@ const ProductsCard = () => {
   const [showReportBtn, setShowReportBtn] = useState(false)
   const [thumbClicked, setThumbClicked] = useState(false)
   const [showShare, setShowShare] = useState(false)
+  const [likeCount, setLikeCount] = useState(0)
 
-  const handleShowShare = (show) => setShowShare(show)
+  const handleShowShare = (show) => {
+    // 모달창 띄웠을 때 스크롤 방지
+    document.body.style.overflow = show ? "hidden" : "unset"
+
+    setShowShare(show)
+  }
 
   // kakao script 넣기
   useEffect(() => {
@@ -23,6 +29,11 @@ const ProductsCard = () => {
       document.body.removeChild(script)
     }
   }, [])
+
+  const handleLike = () => {
+    setThumbClicked((prev) => !prev)
+    setLikeCount((prev) => (thumbClicked ? prev - 1 : prev + 1))
+  }
 
   return (
     <CardContainer>
@@ -46,14 +57,14 @@ const ProductsCard = () => {
         <InfoSection>
           <LikeAndShare>
             <LikeImg
-              onClick={() => setThumbClicked((prev) => !prev)}
+              onClick={handleLike}
               src={
                 thumbClicked
-                  ? "https://static.balaan.co.kr/mobile/img/icon/like_hand.png"
-                  : "https://static.balaan.co.kr/mobile/img/review/like-hand-fill.png?v4"
+                  ? "https://static.balaan.co.kr/mobile/img/review/like-hand-fill.png?v4"
+                  : "https://static.balaan.co.kr/mobile/img/icon/like_hand.png"
               }
             />
-            <LikeCount>37</LikeCount>
+            <LikeCount>{likeCount}</LikeCount>
             <ShareImg onClick={() => handleShowShare(true)} src="https://static.balaan.co.kr/mobile/img/view/share.png?v=2" />
           </LikeAndShare>
           <HeartImg src="https://static.balaan.co.kr/mobile/img/icon/ic-new-heart-normal.png" />
@@ -97,7 +108,6 @@ const ProductsCard = () => {
 }
 
 const CardContainer = styled.div`
-  position: relative;
   width: 500px;
 `
 
