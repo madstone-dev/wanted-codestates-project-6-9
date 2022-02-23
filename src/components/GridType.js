@@ -1,73 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const GridList = () => {
+const GridList = ({ reviews }) => {
   const toDetail = (id) => {
     // 상세 페이지로 이동
   };
 
   return (
     <Container>
-      <Review onClick={toDetail(1)}>
-        <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
-        />
-      </Review>
-      <Review onClick={toDetail(1)}>
-        <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
-        />
-      </Review>{' '}
-      <Review onClick={toDetail(1)}>
-        <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
-        />
-      </Review>{' '}
-      <Review onClick={toDetail(1)}>
-        <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
-        />
-      </Review>{' '}
-      <Review onClick={toDetail(1)}>
-        <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
-        />
-      </Review>{' '}
-      <Review onClick={toDetail(1)}>
-        <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
-        />
-      </Review>{' '}
-      <Review onClick={toDetail(1)}>
-        <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
-        />
-      </Review>
-      <Review onClick={toDetail(1)}>
-        <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
-        />
-      </Review>{' '}
-      <Review onClick={toDetail(1)}>
-        <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
-        />
-      </Review>{' '}
-      <Review onClick={toDetail(1)}>
-        <ReviewImg
-          src='https://i.balaan.io/review/0b8cb96ad6e3bdc8e7ad05c021490f87-t.jpg'
-          alt=''
-        />
-      </Review>
+      {reviews.map((review) => (
+        <Review onClick={toDetail(review.id)} key={review.id}>
+          <ReviewImg src={review.image} alt='' />
+        </Review>
+      ))}
     </Container>
   );
 };

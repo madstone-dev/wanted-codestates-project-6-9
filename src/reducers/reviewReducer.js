@@ -1,4 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
+import { dummyComments, dummyReview } from "../dumy";
 
 function Review({ id, title, image, score }) {
   return {
@@ -22,8 +23,8 @@ function Comment({ id, content, reviewId }) {
 }
 
 const initialState = {
-  reviews: [],
-  comments: [],
+  reviews: dummyReview,
+  comments: dummyComments,
   sortBy: "createdAt",
   align: "asc",
   pageItems: [],

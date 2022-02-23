@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Filter from '../components/Filter';
 import GridType from '../components/GridType';
 import Modal from '../components/Modal';
 import TypeSelector from '../components/TypeSelector';
 import ListType from '../components/ListType';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateSort } from '../reducers/reviewReducer';
 
 const ReviewList = () => {
+  const reviews = useSelector((state) => state.reviews.reviews);
   const [modalView, setModalView] = useState(false);
   const [selectedItem, setSelectedItem] = useState({
-    id: 'recent',
+    id: 'createdAt',
     text: '최신순',
   });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(updateSort({ sort: selectedItem.id, align: selectedItem.align }));
+  }, [dispatch, selectedItem]);
   const [viewType, setViewType] = useState('grid');
+  // 최신순, 코멘트순, 랜덤순
 
   const changeType = (type) => {
     setViewType(type);
@@ -26,7 +34,7 @@ const ReviewList = () => {
       <ContentContainer>
         <Filter handleModal={handleModal} selectedItem={selectedItem} />
         <TypeSelector viewType={viewType} changeType={changeType} />
-        {viewType === 'grid' ? <GridType /> : <ListType />}
+        {viewType === 'grid' ? <GridType reviews={reviews} /> : <ListType />}
       </ContentContainer>
       {modalView && (
         <Modal
