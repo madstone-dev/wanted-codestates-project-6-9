@@ -18,7 +18,7 @@ const FileContainer = styled.div`
   };
 `;
 
-export default function FileSelector({setImgBase64,setImgFile,imgFile,imgBase64}) {
+export default function FileSelector({setImgBase64,setImgFile}) {
   const handleChangeFile = (event) => {
     let reader = new FileReader();
 
@@ -37,13 +37,13 @@ export default function FileSelector({setImgBase64,setImgFile,imgFile,imgBase64}
 
   return (
     <FileContainer>
-    <label htmlFor="imgFile">
+    <label htmlFor="image">
       <img src={camera} alt="사진 선택" />
     </label>
     <input
       type="file"
-      id="imgFile"
-      name="imgFile"
+      id="image"
+      name="image"
       accept="image/*"
       onChange={handleChangeFile}
     />
