@@ -12,7 +12,7 @@ const InfiniteScroll = () => {
 
   useEffect(() => {
     const onIntersect = ([entry], observer) => {
-      console.log(entry, observer);
+      // console.log(entry, observer);
       if (entry.isIntersecting) {
         observer.unobserve(entry.target);
         dispatch(updatePage(page + 1));

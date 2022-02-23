@@ -1,8 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import InfiniteScroll from './InfiniteScroll';
 
 const GridList = ({ reviews }) => {
+  const maxPage = useSelector((state) => state.reviews.maxPage);
+  const page = useSelector((state) => state.reviews.page);
+
   const toDetail = (id) => {
     // 상세 페이지로 이동
   };
@@ -16,7 +20,7 @@ const GridList = ({ reviews }) => {
           </Review>
         ))}
       </Container>
-      {reviews.length > 0 && <InfiniteScroll />}
+      {reviews.length > 0 && maxPage !== page && <InfiniteScroll />}
     </>
   );
 };
