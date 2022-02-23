@@ -1,41 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TypeSelector = ({ viewType, changeType }) => {
-  return (
-    <Container>
-      <Type
-        viewType='grid'
-        selected={viewType === 'grid'}
-        onClick={() => changeType('grid')}
-      >
-        <TypeIcon>
-          <Icon
-            selected={viewType === 'grid'}
-            src='https://static.balaan.co.kr/mobile/img/icon/contents/tab-icon-01@2x.png'
-            alt='그리드'
-          />
-        </TypeIcon>
-      </Type>
-      <Type
-        viewType='list'
-        selected={viewType === 'list'}
-        onClick={() => changeType('list')}
-      >
-        <TypeIcon>
-          <Icon
-            selected={viewType === 'list'}
-            src='https://static.balaan.co.kr/mobile/img/icon/contents/tab-icon-02@2x.png'
-            alt='리스트'
-          />
-        </TypeIcon>
-      </Type>
-    </Container>
-  );
-};
-
-export default TypeSelector;
-
 const Container = styled.section`
   width: 100%;
   height: 4rem;
@@ -70,3 +35,38 @@ const Icon = styled.img`
   width: 2rem;
   opacity: ${(props) => (props.selected ? '1' : '0.4')};
 `;
+
+const TypeSelector = ({ viewType, changeType }) => {
+  return (
+    <Container>
+      <Type
+        viewType="grid"
+        selected={viewType === 'grid'}
+        onClick={() => changeType('grid')}
+      >
+        <TypeIcon>
+          <Icon
+            selected={viewType === 'grid'}
+            src="https://static.balaan.co.kr/mobile/img/icon/contents/tab-icon-01@2x.png"
+            alt="그리드"
+          />
+        </TypeIcon>
+      </Type>
+      <Type
+        viewType="list"
+        selected={viewType === 'list'}
+        onClick={() => changeType('list')}
+      >
+        <TypeIcon>
+          <Icon
+            selected={viewType === 'list'}
+            src="https://static.balaan.co.kr/mobile/img/icon/contents/tab-icon-02@2x.png"
+            alt="리스트"
+          />
+        </TypeIcon>
+      </Type>
+    </Container>
+  );
+};
+
+export default TypeSelector;

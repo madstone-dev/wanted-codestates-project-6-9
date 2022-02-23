@@ -4,6 +4,10 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { updatePage } from '../../reducers/reviewReducer';
 
+const Container = styled.div`
+  height: 3rem;
+`;
+
 const InfiniteScroll = () => {
   const [target, setTarget] = useState(null);
 
@@ -34,7 +38,3 @@ const InfiniteScroll = () => {
 };
 
 export default InfiniteScroll;
-
-const Container = styled.div`
-  height: 3rem;
-`;
