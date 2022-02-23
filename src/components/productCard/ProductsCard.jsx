@@ -4,7 +4,7 @@ import Share from "../share"
 import GoodsSlide from "../goodsSlide/goodsSlide"
 import Comments from "../comments/comments"
 
-const ProductsCard = () => {
+const ProductsCard = ({ review }) => {
   const [showReportBtn, setShowReportBtn] = useState(false)
   const [thumbClicked, setThumbClicked] = useState(false)
   const [showShare, setShowShare] = useState(false)
@@ -38,9 +38,9 @@ const ProductsCard = () => {
   return (
     <CardContainer>
       <CardHeader>
-        <User>a950819</User>
+        <User>{review.id ?? "userid"}</User>
         <CardHeaderRight>
-          <CreatedTime>2021-02-25</CreatedTime>
+          <CreatedTime>{review.createdAt}</CreatedTime>
           <ReportDiv>
             <ReportButton onClick={() => setShowReportBtn((prev) => !prev)} src="https://i.balaan.io/mobile/img/icon/icon-more.png" />
             <ReportPopup show={showReportBtn}>
@@ -51,7 +51,7 @@ const ProductsCard = () => {
         </CardHeaderRight>
       </CardHeader>
       <CardImageContainer>
-        <Image src="https://i.balaan.io/review/RV0000021430-2.webp" />
+        <Image src={review.image ?? "https://i.balaan.io/review/RV0000021430-2.webp"} />
       </CardImageContainer>
       <CardDescContainer>
         <InfoSection>
@@ -78,7 +78,7 @@ const ProductsCard = () => {
           ))}
         </StarsSection>
         <Options>구매 옵션명: 35</Options>
-        <Review>아이 예뻐요 사진이랑 똑같습니다!</Review>
+        <Review>{review.title ?? "아이 예뻐요 사진이랑 똑같습니다!"}</Review>
         <TagContainer>
           <Tag>
             사이즈는 어떤가요? <span>정사이즈에요</span>
