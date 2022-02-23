@@ -32,7 +32,7 @@ const ShareButtons = ({ showShare, handleShowShare, review }) => {
       const kakao = window.Kakao;
 
       if (!kakao.isInitialized()) {
-        kakao.init('34cbf0f18f5987e6e9641ad7f4bc6106'); // env 생성 필요
+        kakao.init(process.env.REACT_APP_KAKAO_KEY); // env 생성 필요
       }
 
       kakao.Link.sendDefault({

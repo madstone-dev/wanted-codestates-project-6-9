@@ -40,7 +40,6 @@ export default function Register() {
       alert('모든 항목을 기입하세요');
     } else {
       dispatch(addReview({ title, image, score }));
-      console.log({ title, image, score });
       setImage(null);
       setImgBase64('');
       setScoreBoolean([false, false, false, false, false]);

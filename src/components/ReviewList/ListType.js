@@ -12,8 +12,6 @@ const Container = styled.div`
 const GridList = ({ reviews }) => {
   const maxPage = useSelector((state) => state.reviews.maxPage);
   const page = useSelector((state) => state.reviews.page);
-
-  console.log(reviews);
   return (
     <>
       <Container>
