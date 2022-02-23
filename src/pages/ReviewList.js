@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Filter from '../components/Filter';
-import GridType from '../components/ReviewList/GridType';
-import Modal from '../components/ReviewList/Modal';
-import TypeSelector from '../components/ReviewList/TypeSelector';
-import ListType from '../components/ReviewList/ListType';
+import Filter from '../components/ReviewList/Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePage, updateSort } from '../reducers/reviewReducer';
+import TypeSelector from '../components/ReviewList/TypeSelector';
+import GridType from '../components/ReviewList/GridType';
+import ListType from '../components/ReviewList/ListType';
+import Modal from '../components/ReviewList/Modal';
+
 
 const ReviewList = () => {
   const pageItems = useSelector((state) => state.reviews.pageItems);

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Scrolltotop from '../ScrollToTop';
-import InfiniteScroll from '../ReviewList/InfiniteScroll';
+import InfiniteScroll from './InfiniteScroll';
 
 const GridList = ({ reviews }) => {
   const maxPage = useSelector((state) => state.reviews.maxPage);
@@ -18,7 +18,7 @@ const GridList = ({ reviews }) => {
     <>
       <Container>
         {reviews.map((review) => (
-          <Review onClick={toDetail(review.id)} key={review.id}>
+          <Review onClick={() => toDetail(review.id)} key={review.id}>
             <ReviewImg src={review.image} alt="" />
           </Review>
         ))}
