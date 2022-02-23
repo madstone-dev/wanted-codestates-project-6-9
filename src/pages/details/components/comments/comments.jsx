@@ -33,16 +33,16 @@ const Comments = props => {
     <CommentsComponent>
       {true && <Comment />}
       <FormComponent onSubmit={onSubmit}>
-        <input
+        <CommentInput
           ref={inputRef}
           type="text"
           value={text}
           onChange={setTextValue}
           placeholder="댓글을 입력해주세요."
         />
-        <button type="submit" onSubmit={onSubmit}>
+        <SubmitButton type="submit" onSubmit={onSubmit}>
           게시
-        </button>
+        </SubmitButton>
       </FormComponent>
     </CommentsComponent>
   );
@@ -63,25 +63,27 @@ const FormComponent = styled.form`
   color: #333;
   border: 0;
   outline: 0;
-  input {
-    font-size: 1.3rem;
-    border: none;
-    padding: 1rem;
-    width: 100%;
-    border-radius: 4rem 0 0 4rem;
-    border-right: 0;
-    padding-left: 2rem;
-    border: 1px solid #ddd;
-  }
-  button {
-    font-size: 1.3rem;
-    width: 7rem;
-    cursor: pointer;
-    padding-right: 2rem;
-    border-left: 0;
-    border-radius: 0 4rem 4rem 0;
-    background: #fff;
-    border: none;
-    border: 1px solid #ddd;
-  }
+`;
+
+const CommentInput = styled.input`
+  font-size: 1.3rem;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 4rem 0 0 4rem;
+  border-right: 0;
+  padding-left: 2rem;
+  border: 1px solid #ddd;
+`;
+
+const SubmitButton = styled.button`
+  font-size: 1.3rem;
+  width: 7rem;
+  cursor: pointer;
+  padding-right: 2rem;
+  border-left: 0;
+  border-radius: 0 4rem 4rem 0;
+  background: #fff;
+  border: none;
+  border: 1px solid #ddd;
 `;

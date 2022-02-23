@@ -55,23 +55,23 @@ const items = [
 const GoodsSlide = props => {
   return (
     <Goods>
-      <ul>
+      <ItemList>
         {items
           ? items.map((item, index) =>
-              <li key={index}>
-                <img src={`${item.src}`} alt={item.productName} />
-                <div>
+              <Item key={index}>
+                <ItemImage src={`${item.src}`} alt={item.productName} />
+                <ItemInfo>
                   <span>
                     {item.productName}
                   </span>
                   <span>
                     {item.productPrice}원
                   </span>
-                </div>
-              </li>
+                </ItemInfo>
+              </Item>
             )
           : ""}
-      </ul>
+      </ItemList>
     </Goods>
   );
 };
@@ -84,41 +84,43 @@ const Goods = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
-  ul {
-    margin: 0;
-    height: 100%;
-    padding: 0;
-    width: 250%;
-    display: flex;
-    flex-direction: row;
-    & li:nth-child(1) {
-      margin-left: 1.5rem;
-    }
-    li {
-      list-style: none;
-      cursor: pointer;
-      width: 8.5rem;
-      margin-right: 1rem;
-      padding-top: 0.65rem;
-      img {
-        width: 100%;
-      }
-      div {
-        margin-top: 0.9rem;
-        padding: 0 0.4rem;
-        text-align: center;
-      }
-      span {
-        display: block;
-        font-family: Lato;
-        font-size: 1.1rem;
-        font-weight: normal;
-        letter-spacing: -0.025rem;
-        color: #111111;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
+`;
+
+const ItemList = styled.ul`
+  margin: 0;
+  height: 100%;
+  padding: 0;
+  width: 250%;
+  display: flex;
+  flex-direction: row;
+  & li:nth-child(1) {
+    margin-left: 1.5rem;
+  }
+`;
+
+const Item = styled.li`
+  list-style: none;
+  cursor: pointer;
+  width: 8.5rem;
+  margin-right: 1rem;
+  padding-top: 0.65rem;
+`;
+
+const ItemImage = styled.img`width: 100%;`;
+
+const ItemInfo = styled.div`
+  margin-top: 0.9rem;
+  padding: 0 0.4rem;
+  text-align: center;
+  span {
+    display: block;
+    font-family: Lato;
+    font-size: 1.1rem;
+    font-weight: normal;
+    letter-spacing: -0.025rem;
+    color: #111111;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
