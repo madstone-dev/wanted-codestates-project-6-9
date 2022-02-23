@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
-import ProductsCard from "../../components/productCard/ProductsCard"
-import Header from "../../components/header/Header"
+import ProductsCard from "../components/ProductsCard"
+import Header from "../components/Header"
 import styled from "styled-components"
-import Scrolltotop from "../../common/scrollToTop"
+import Scrolltotop from "../components/ScrollToTop"
 import { useSelector } from "react-redux"
 
 const Detail = () => {
