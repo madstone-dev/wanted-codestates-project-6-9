@@ -7,6 +7,20 @@ import InputTitle from '../components/InputTitle';
 import BtnRegister from '../components/BtnRegister';
 import { useDispatch,useSelector } from 'react-redux';
 import {addReview} from '../reducers/reviewReducer';
+import {EscapeBtn,CloseBtn,HeaderTitle} from '../components/header/Header';
+import { useNavigate } from "react-router-dom";
+
+const HeaderComponent = styled.nav`
+  width:500px;
+  box-shadow: 0 0px 3px 0px #ccc;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 0;
+`;
+
 const Inner = styled.section`
   max-width: 500px;
   box-sizing: border-box;
@@ -26,6 +40,11 @@ export default function Register() {
   const [imgBase64, setImgBase64] = useState(""); // base64 미리보기용 
   const [image, setImage] = useState(null);	//이미지 파일	
   const dispatch=useDispatch();
+  const navigate = useNavigate();
+
+  const escape = () => {
+    navigate("/");
+  };
   
   const handleSubmit = (event)=>{
     let score=0;
@@ -51,6 +70,11 @@ export default function Register() {
   
   return (
     <div>
+      <HeaderComponent>
+        <EscapeBtn onClick={escape}/>
+        <HeaderTitle>리뷰 등록</HeaderTitle>
+        <CloseBtn onClick={escape}/>
+      </HeaderComponent>
       <Inner>
         <form onSubmit={handleSubmit}>
           <Preview imgBase64={imgBase64}/>
