@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import Filter from '../components/Filter';
-import GridType from '../components/GridType';
-import Modal from '../components/Modal';
-import TypeSelector from '../components/TypeSelector';
-import ListType from '../components/ListType';
+import React, { useState } from "react";
+import styled from "styled-components";
+import Filter from "../components/Filter";
+import GridType from "../components/GridType";
+import Modal from "../components/Modal";
+import TypeSelector from "../components/TypeSelector";
+import ListType from "../components/ListType";
+import { useSelector } from "react-redux";
 
 const ReviewList = () => {
+  const reviews = useSelector((state) => state.reviews.reviews);
   const [modalView, setModalView] = useState(false);
   const [selectedItem, setSelectedItem] = useState({
-    id: 'recent',
-    text: '최신순',
+    id: "recent",
+    text: "최신순",
   });
-  const [viewType, setViewType] = useState('grid');
+  const [viewType, setViewType] = useState("grid");
 
   const changeType = (type) => {
     setViewType(type);
@@ -26,7 +28,7 @@ const ReviewList = () => {
       <ContentContainer>
         <Filter handleModal={handleModal} selectedItem={selectedItem} />
         <TypeSelector viewType={viewType} changeType={changeType} />
-        {viewType === 'grid' ? <GridType /> : <ListType />}
+        {viewType === "grid" ? <GridType reviews={reviews} /> : <ListType />}
       </ContentContainer>
       {modalView && (
         <Modal
