@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-const TypeSelector = () => {
-  const [selected, setSelected] = useState('grid');
-
-  const changeType = (type) => {
-    setSelected(type);
-  };
-
+const TypeSelector = ({ viewType, changeType }) => {
   return (
     <Container>
       <Type
         viewType='grid'
-        selected={selected === 'grid'}
+        selected={viewType === 'grid'}
         onClick={() => changeType('grid')}
       >
         <TypeIcon>그리드</TypeIcon>
       </Type>
       <Type
         viewType='list'
-        selected={selected === 'list'}
+        selected={viewType === 'list'}
         onClick={() => changeType('list')}
       >
         <TypeIcon>리스트</TypeIcon>
