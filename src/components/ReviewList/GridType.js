@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import InfiniteScroll from './InfiniteScroll';
+import Scrolltotop from '../../common/scrollToTop';
+import InfiniteScroll from '../InfiniteScroll';
 
 const GridList = ({ reviews }) => {
   const maxPage = useSelector((state) => state.reviews.maxPage);
@@ -19,6 +20,7 @@ const GridList = ({ reviews }) => {
             <ReviewImg src={review.image} alt='' />
           </Review>
         ))}
+        <Scrolltotop />
       </Container>
       {reviews.length > 0 && maxPage !== page && <InfiniteScroll />}
     </>

@@ -1,5 +1,5 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import { dummyComments, dummyReviews } from "../constances";
+import { createSlice, current } from '@reduxjs/toolkit';
+import { dummyComments, dummyReviews } from '../constances';
 
 function Review({ id, title, image, score }) {
   return {
@@ -9,7 +9,7 @@ function Review({ id, title, image, score }) {
     score: Number(score),
     createdAt: Date.now(),
     comments: [],
-    commentCnt: 0
+    commentCnt: 0,
   };
 }
 
@@ -18,7 +18,7 @@ function Comment({ id, content, reviewId }) {
     id,
     content,
     reviewId,
-    createdAt: Date.now()
+    createdAt: Date.now(),
   };
 }
 
@@ -27,13 +27,13 @@ const PAGE_SIZE = 15;
 const initialState = {
   reviews: dummyReviews,
   comments: dummyComments,
-  sortBy: "createdAt",
-  align: "desc",
+  sortBy: 'createdAt',
+  align: 'desc',
   pageItems: dummyReviews
     .sort((a, b) => {
-      if (a["createdAt"] > b["createdAt"]) return -1;
-      if (a["createdAt"] < b["createdAt"]) return 1;
-      if (a["createdAt"] === b["createdAt"]) return 0;
+      if (a['createdAt'] > b['createdAt']) return -1;
+      if (a['createdAt'] < b['createdAt']) return 1;
+      if (a['createdAt'] === b['createdAt']) return 0;
     })
     .slice(0, PAGE_SIZE),
   page: 1,
@@ -58,19 +58,19 @@ const findOne = (items, payload) =>
 
 const sortBy = ({ items, sortBy, align }) => {
   const _items = [...items];
-  if (align === "asc") {
+  if (align === 'asc') {
     return _items.sort((a, b) => {
       if (a[sortBy] > b[sortBy]) return 1;
       if (a[sortBy] < b[sortBy]) return -1;
       if (a[sortBy] === b[sortBy]) return 0;
     });
-  } else if (align === "desc") {
+  } else if (align === 'desc') {
     return _items.sort((a, b) => {
       if (a[sortBy] > b[sortBy]) return -1;
       if (a[sortBy] < b[sortBy]) return 1;
       if (a[sortBy] === b[sortBy]) return 0;
     });
-  } else if (align === "rnd") {
+  } else if (align === 'rnd') {
     return _items.sort(() => (Math.random() > 0.5 ? 1 : -1));
   }
   throw new Error("허용되는 align은 'asc' 'desc' 'rdn' 입니다.");
@@ -95,7 +95,7 @@ const updateCommentInReviews = (reviews, comments, reviewId, state) => {
 };
 
 export const reviewSlice = createSlice({
-  name: "review",
+  name: 'review',
   initialState,
   reducers: {
     addReview: (state, action) => {
@@ -103,8 +103,8 @@ export const reviewSlice = createSlice({
 
       const sortedByIdAsc = sortBy({
         items: reviews,
-        sortBy: "id",
-        align: "asc"
+        sortBy: 'id',
+        align: 'asc',
       });
 
       const id = sortedByIdAsc[sortedByIdAsc.length - 1]
@@ -117,7 +117,7 @@ export const reviewSlice = createSlice({
       const sortByState = sortBy({
         items: newReviews,
         sortBy: sort,
-        align
+        align,
       });
 
       state.reviews = sortByState;
@@ -161,7 +161,7 @@ export const reviewSlice = createSlice({
       const sortByAction = sortBy({
         items: reviews,
         sortBy: action.payload.sort ? action.payload.sort : sort,
-        align: action.payload.align ? action.payload.align : align
+        align: action.payload.align ? action.payload.align : align,
       });
 
       if (action.payload.sort) state.sortBy = action.payload.sort;
@@ -212,7 +212,6 @@ export const reviewSlice = createSlice({
       state.pageItems = getPageItems(reviews, action.payload, state);
     },
   },
-
 });
 
 export const {
