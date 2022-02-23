@@ -9,7 +9,7 @@ function Review({ id, title, image, score }) {
     score: Number(score),
     createdAt: Date.now(),
     comments: [],
-    commentCnt: 0,
+    commentCnt: 0
   };
 }
 
@@ -18,7 +18,7 @@ function Comment({ id, content, reviewId }) {
     id,
     content,
     reviewId,
-    createdAt: Date.now(),
+    createdAt: Date.now()
   };
 }
 
@@ -104,7 +104,7 @@ export const reviewSlice = createSlice({
       const sortedByIdAsc = sortBy({
         items: reviews,
         sortBy: "id",
-        align: "asc",
+        align: "asc"
       });
 
       const id = sortedByIdAsc[sortedByIdAsc.length - 1]
@@ -117,7 +117,7 @@ export const reviewSlice = createSlice({
       const sortByState = sortBy({
         items: newReviews,
         sortBy: sort,
-        align,
+        align
       });
 
       state.reviews = sortByState;
@@ -161,7 +161,7 @@ export const reviewSlice = createSlice({
       const sortByAction = sortBy({
         items: reviews,
         sortBy: action.payload.sort ? action.payload.sort : sort,
-        align: action.payload.align ? action.payload.align : align,
+        align: action.payload.align ? action.payload.align : align
       });
 
       if (action.payload.sort) state.sortBy = action.payload.sort;
@@ -212,6 +212,7 @@ export const reviewSlice = createSlice({
       state.pageItems = getPageItems(reviews, action.payload, state);
     },
   },
+
 });
 
 export const {
